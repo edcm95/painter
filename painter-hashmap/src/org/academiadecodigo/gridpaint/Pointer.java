@@ -28,35 +28,43 @@ public class Pointer {
     //---------------------------MOVEMENT METHOS
 
     public void moveLeft() {
-        if (position.getX() > grid.getBoard().getX()) {
-            position.translate(-cellSize, 0);
-            pointerShape.translate(-cellSize, 0);
-            paintCell();
+        if (position.getX() < grid.getBoard().getX() + cellSize) {
+            return;
         }
+
+        position.translate(-cellSize, 0);
+        pointerShape.translate(-cellSize, 0);
+        paintCell();
     }
 
     public void moveRight() {
-        if (position.getX() < grid.getBoard().getWidth() - cellSize) {
-            position.translate(cellSize, 0);
-            pointerShape.translate(cellSize, 0);
-            paintCell();
+        if (position.getX() > grid.getBoard().getWidth() - cellSize) {
+            return;
         }
+
+        position.translate(cellSize, 0);
+        pointerShape.translate(cellSize, 0);
+        paintCell();
     }
 
     public void moveUp() {
-        if (position.getY() > grid.getBoard().getY()) {
-            position.translate(0, -cellSize);
-            pointerShape.translate(0, -cellSize);
-            paintCell();
+        if (position.getY() < grid.getBoard().getY() + cellSize) {
+            return;
         }
+
+        position.translate(0, -cellSize);
+        pointerShape.translate(0, -cellSize);
+        paintCell();
     }
 
     public void moveDown() {
-        if (position.getY() < grid.getBoard().getHeight() - cellSize) {
-            position.translate(0, cellSize);
-            pointerShape.translate(0, cellSize);
-            paintCell();
+        if (position.getY() > grid.getBoard().getHeight() - cellSize) {
+            return;
         }
+
+        position.translate(0, cellSize);
+        pointerShape.translate(0, cellSize);
+        paintCell();
     }
 
     public void recenter() {
