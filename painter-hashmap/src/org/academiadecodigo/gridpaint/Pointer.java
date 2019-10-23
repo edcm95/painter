@@ -28,29 +28,35 @@ public class Pointer {
     //---------------------------MOVEMENT METHOS
 
     public void moveLeft() {
-        position.translate(-cellSize, 0);
-        pointerShape.translate(-cellSize, 0);
-        paintCell();
+        if (position.getX() > grid.getBoard().getX()) {
+            position.translate(-cellSize, 0);
+            pointerShape.translate(-cellSize, 0);
+            paintCell();
+        }
     }
 
     public void moveRight() {
-        position.translate(cellSize, 0);
-        pointerShape.translate(cellSize, 0);
-        paintCell();
-
+        if (position.getX() < grid.getBoard().getWidth() - cellSize) {
+            position.translate(cellSize, 0);
+            pointerShape.translate(cellSize, 0);
+            paintCell();
+        }
     }
 
     public void moveUp() {
-        position.translate(0, -cellSize);
-        pointerShape.translate(0, -cellSize);
-        paintCell();
+        if (position.getY() > grid.getBoard().getY()) {
+            position.translate(0, -cellSize);
+            pointerShape.translate(0, -cellSize);
+            paintCell();
+        }
     }
 
     public void moveDown() {
-        position.translate(0, cellSize);
-        pointerShape.translate(0, cellSize);
-        paintCell();
-
+        if (position.getY() < grid.getBoard().getHeight() - cellSize) {
+            position.translate(0, cellSize);
+            pointerShape.translate(0, cellSize);
+            paintCell();
+        }
     }
 
     public void recenter() {
