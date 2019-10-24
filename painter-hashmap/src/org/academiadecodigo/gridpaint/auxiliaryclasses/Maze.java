@@ -29,8 +29,8 @@ public class Maze implements Runnable {
 
         while (!queue.isEmpty()) {
 
-            if (queue.size() > 10000000) {
-                System.out.println("POINTER: BFS Queue size exceeded 10 Million objects, operation aborted.");
+            if (queue.size() > 8000000) {
+                System.out.println("POINTER: BFS Queue size exceeded 8 Million objects, operation aborted.");
                 break;
             }
 

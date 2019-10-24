@@ -14,7 +14,6 @@ public class Grid implements Iterable<Position> {
     public Grid(double cellSize, Rectangle board) {
         this.cellSize = cellSize;
         this.board = board;
-
         init();
     }
 
