@@ -31,19 +31,18 @@ public class Grid implements Iterable<Position> {
         mapOfCells.put(firstCellPos, new Cell(firstCellPos, cellSize));
 
         //Populate map with the rest of the cells
-
         for (int i = 0; i < numberOfRows; i++) {
 
             for (int j = 0; j < numberOfCols; j++) {
                 Position newCellPos = new Position((board.getX() + j * cellSize), (board.getY() + i * cellSize));
                 Cell newCell = new Cell(newCellPos, cellSize);
                 mapOfCells.put(newCellPos, newCell);
+                newCell.initCell();
             }
         }
 
         long elapsedTime = (System.nanoTime() - start) / 1000000;
         System.out.println("GRID init: Finished creating cells, it took " + elapsedTime + " ms.");
-
     }
 
     public void resetGrid() {

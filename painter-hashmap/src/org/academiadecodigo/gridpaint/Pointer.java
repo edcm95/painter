@@ -25,8 +25,7 @@ public class Pointer {
         this.color = Color.CYAN;
     }
 
-    //---------------------------MOVEMENT METHOS
-
+    //---------------------------MOVEMENT METHODS
     public void moveLeft() {
         if (position.getX() < grid.getBoard().getX() + cellSize) {
             return;
@@ -86,8 +85,7 @@ public class Pointer {
         Cell cell = grid.getCellInPosition(position);
 
         if (cell == null) {
-            Painter.message.setText("No such cell.");
-            Painter.message.draw();
+            System.out.println("Cell is null.");
             return;
         }
 
@@ -163,7 +161,7 @@ public class Pointer {
 
     public void doTheMaze() {
         Maze maze = new Maze(color, grid, position, cellSize);
-        maze.start();
+        (new Thread(maze)).start();
     }
 
     public void setPointerWritingStatus(boolean value) {

@@ -6,7 +6,7 @@ import org.academiadecodigo.gridpaint.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import java.util.LinkedList;
 
-public class Maze {
+public class Maze implements Runnable {
 
     private Color color;
     private Grid grid;
@@ -20,8 +20,7 @@ public class Maze {
         this.cellSize = cellSize;
     }
 
-    public void start() {
-
+    public void run() {
         long start = System.nanoTime();
         Position rootPosition = new Position(root.getX(), root.getY());
 
@@ -30,8 +29,8 @@ public class Maze {
 
         while (!queue.isEmpty()) {
 
-            if (queue.size() > 5000000) {
-                System.out.println("POINTER: BFS Queue size exceeded 5 Million objects, operation aborted.");
+            if (queue.size() > 10000000) {
+                System.out.println("POINTER: BFS Queue size exceeded 10 Million objects, operation aborted.");
                 break;
             }
 

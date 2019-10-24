@@ -12,9 +12,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Painter implements KeyboardHandler {
 
     private static final double BORDER = 10;
-    private static Text warning;
-    public static Text message;
-    private Text text7;
+    private Text saveSlot;
     private Grid grid;
     private Pointer pointer;
     private Saver saver;
@@ -22,82 +20,64 @@ public class Painter implements KeyboardHandler {
     private double width;
     private double height;
     private int slot;
-    private boolean ready;
 
     public Painter(double cellSize, double width, double height) {
-        warning = new Text(BORDER, BORDER, "");
         this.cellSize = cellSize;
         this.slot = 0;
         this.width = width;
         this.height = height;
+        init();
     }
 
     private void init() {
         Rectangle table = new Rectangle(BORDER, BORDER, width, height);
-        grid = new Grid(cellSize, table);
 
-        table.setColor(Color.BLACK);
-        table.draw();
 
         //Make pointer
         Position newPointerPosition = new Position(table.getX(), table.getY());
+
+
+        //Make instructions
+        Text inst = new Text(table.getWidth() + table.getX() + 10, table.getY(), "Instructions:");
+        Text inst1 = new Text(inst.getX(), inst.getY() + 20, "S - Save, X - Load, C - Clear");
+        Text inst2 = new Text(inst1.getX(), inst1.getY() + 40, "H - Left, J - Up, K - Down, L - Right");
+        Text inst3 = new Text(inst2.getX(), inst2.getY() + 40, "1 - Cyan, 2 - Yellow, 3 - Green");
+        Text inst4 = new Text(inst3.getX(), inst3.getY() + 20, "4 - Pink, 5 - Magenta, 6 - Red");
+        Text inst5 = new Text(inst4.getX(), inst4.getY() + 20, "7 - Blue, 8 - Black, 9 - White");
+        Text inst6 = new Text(inst5.getX(), inst5.getY() + 40, "R - Recenter pointer, F - Fill, M - Maze");
+        Text inst7 = new Text(inst6.getX(), inst6.getY() + 40, "B - Increase slot, N - Decrease slot, P - Exit");
+        saveSlot = new Text(inst7.getX(), inst7.getY() + 20, "Save slot: " + slot);
+
+        //Primary draw
+        //table.setColor(Color.BLACK);
+        table.draw();
+        inst.draw();
+        inst1.draw();
+        inst2.draw();
+        inst3.draw();
+        inst4.draw();
+        inst5.draw();
+        inst6.draw();
+        inst7.draw();
+
+        //Instance final elements
+        grid = new Grid(cellSize, table);
         pointer = new Pointer(newPointerPosition, grid);
-
-        //Draw instructions
-        Text instructions = new Text(table.getWidth() + table.getX() + 10, table.getY(), "Instructions:");
-        Text text = new Text(instructions.getX(), instructions.getY() + 20, "S - Save, X - Load, C - Clear");
-        Text text1 = new Text(text.getX(), text.getY() + 40, "H - Left, J - Up, K - Down, L - Right");
-        Text text2 = new Text(text1.getX(), text1.getY() + 40, "1 - Cyan, 2 - Yellow, 3 - Green");
-        Text text3 = new Text(text2.getX(), text2.getY() + 20, "4 - Pink, 5 - Magenta, 6 - Red");
-        Text text4 = new Text(text3.getX(), text3.getY() + 20, "7 - Blue, 8 - Black, 9 - White");
-        Text text5 = new Text(text4.getX(), text4.getY() + 40, "R - Recenter pointer, F - Fill, M - Maze");
-        Text text6 = new Text(text5.getX(), text5.getY() + 40, "B - Increase slot, N - Decrease slot, P - Exit");
-        text7 = new Text(text6.getX(), text6.getY() + 20, "Save slot: " + slot);
-        message = new Text(text7.getX(), text7.getY() + 40, "");
-
-        //Initial draw
-        for (Position position : grid) {
-            grid.getCellInPosition(position).initCell();
-        }
-
-        instructions.draw();
-        text.draw();
-        text1.draw();
-        text2.draw();
-        text3.draw();
-        text4.draw();
-        text5.draw();
-        text6.draw();
-        text7.draw();
-
-        pointer.draw();
-
         saver = new Saver();
 
-        ready = true;
+        //Secondary draw
+        saveSlot.draw();
+        pointer.draw();
     }
 
-    void start() throws InterruptedException {
+    void start() {
 
-        //Fake loading looks fancier
-        while (!ready) {
-            warning.setText("Loading.");
-            warning.draw();
-            Thread.sleep(200);
-            warning.setText("Loading..");
-            warning.draw();
-            Thread.sleep(200);
-            warning.setText("Loading...");
-            warning.draw();
-            Thread.sleep(200);
-            warning.setText("");
-            warning.draw();
-            init();
-        }
+
         keyboardSetup();
     }
 
     //----------------------------------------------------------------------------------KEYBOARD SETUP------------------
+    // TODO: 24/10/2019 Pack keyboard stuff into a new class to make this clearner looking
     private void keyboardSetup() {
         Keyboard keyboard = new Keyboard(this);
 
@@ -248,7 +228,6 @@ public class Painter implements KeyboardHandler {
         switch (kEvent.getKey()) {
             case (KeyboardEvent.KEY_SPACE):
                 pointer.setPointerWritingStatus(false);
-                message.setText("");
                 break;
         }
 
@@ -266,7 +245,7 @@ public class Painter implements KeyboardHandler {
     }
 
     private void changeSlot(int value) {
-        text7.delete();
+        saveSlot.delete();
         slot = slot + value;
 
         if (slot < 0) {
@@ -277,7 +256,7 @@ public class Painter implements KeyboardHandler {
             slot = 3;
         }
 
-        text7.setText("Save slot: " + slot);
-        text7.draw();
+        saveSlot.setText("Save slot: " + slot);
+        saveSlot.draw();
     }
 }
