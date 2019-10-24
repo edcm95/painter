@@ -169,7 +169,6 @@ public class PainterKeyboard implements KeyboardHandler {
                 pointer.setPointerWritingStatus(false);
                 break;
         }
-
     }
 }
 

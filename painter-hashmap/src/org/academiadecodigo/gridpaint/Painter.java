@@ -35,7 +35,6 @@ public class Painter {
         //Primary instance
         Rectangle table = new Rectangle(BORDER, BORDER, width, height);
 
-
         //Make instructions
         Text text0 = new Text(table.getWidth() + table.getX() + 10, table.getY(), "Instructions:");
         Text text1 = new Text(text0.getX(), text0.getY() + 20, "S - Save, X - Load, C - Clear");

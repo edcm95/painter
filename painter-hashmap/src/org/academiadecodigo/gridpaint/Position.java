@@ -41,8 +41,6 @@ public class Position {
         return origin;
     }
 
-    //InteliJ FTW!!
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

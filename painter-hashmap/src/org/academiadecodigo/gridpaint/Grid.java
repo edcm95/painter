@@ -1,5 +1,6 @@
 package org.academiadecodigo.gridpaint;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
@@ -7,8 +8,8 @@ import java.util.Iterator;
 
 public class Grid implements Iterable<Position> {
 
-    private HashMap<Position,Cell> mapOfCells;
     private double cellSize;
+    private HashMap<Position, Cell> mapOfCells;
     private Rectangle board;
 
     public Grid(double cellSize, Rectangle board) {
@@ -22,7 +23,7 @@ public class Grid implements Iterable<Position> {
 
         double numberOfRows = (board.getHeight() / cellSize);
         double numberOfCols = (board.getWidth() / cellSize);
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
         System.out.println("GRID init: Creating cells");
 
         //Add first cell
@@ -40,7 +41,7 @@ public class Grid implements Iterable<Position> {
             }
         }
 
-        long elapsedTime = (System.nanoTime() - start) / 1000000;
+        long elapsedTime = (System.currentTimeMillis() - start);
         System.out.println("GRID init: Finished creating cells, it took " + elapsedTime + " ms.");
     }
 
@@ -53,7 +54,7 @@ public class Grid implements Iterable<Position> {
     }
 
     public Cell getCellInPosition(Position position) {
-       return mapOfCells.get(position);
+        return mapOfCells.get(position);
     }
 
     @Override

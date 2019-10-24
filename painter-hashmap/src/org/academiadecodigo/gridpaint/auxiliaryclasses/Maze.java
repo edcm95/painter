@@ -4,6 +4,7 @@ import org.academiadecodigo.gridpaint.Cell;
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
+
 import java.util.LinkedList;
 
 public class Maze implements Runnable {
@@ -13,7 +14,7 @@ public class Maze implements Runnable {
     private Position root;
     private double cellSize;
 
-    public Maze(Color color, Grid grid, Position root, double cellSize){
+    public Maze(Color color, Grid grid, Position root, double cellSize) {
         this.grid = grid;
         this.root = root;
         this.color = color;
@@ -21,16 +22,16 @@ public class Maze implements Runnable {
     }
 
     public void run() {
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
         Position rootPosition = new Position(root.getX(), root.getY());
 
         LinkedList<Position> queue = new LinkedList<>();
-        queue.push(rootPosition);
+        queue.offer(rootPosition);
 
         while (!queue.isEmpty()) {
-
             if (queue.size() > 8000000) {
-                System.out.println("POINTER: BFS Queue size exceeded 8 Million objects, operation aborted.");
+                System.out.println("POINTER: Queue size exceeded 8 Million objects, operation aborted.");
+                emptyContainer(queue);
                 break;
             }
 
@@ -38,91 +39,90 @@ public class Maze implements Runnable {
             Position current = queue.poll();
             Cell tempCell = grid.getCellInPosition(current);
 
-            //--------------------------------------------------------PROCESS CURRENT
-
             //If cell is the seeked cell, empty the container and reverse the Path
-            if (tempCell != null && tempCell.isPainted() && tempCell.getColor() == color) {
-                emptyContainer(queue);
+            if (tempCell.isPainted() && tempCell.getColor() == color) {
                 reversePath(current);
+                System.out.println(queue.size());
+                emptyContainer(queue);
                 break;
             }
 
             processCleanCell(tempCell);
 
-            //---------------------------------------GET CELLS
-
             //Get lower cell
-            Position toDown = new Position(current);
-            toDown.translate(0, cellSize);
-            tempCell = grid.getCellInPosition(toDown);
+            Position lower = new Position(current);
+            lower.translate(0, cellSize);
+            tempCell = grid.getCellInPosition(lower);
 
-            checkProcessedCellAndAddToContainer(queue, toDown, tempCell);
+            checkProcessedCellAndAddToContainer(queue, lower, tempCell);
 
             //Get upper cell
-            Position toUp = new Position(current);
-            toUp.translate(0, -cellSize);
-            tempCell = grid.getCellInPosition(toUp);
+            Position upper = new Position(current);
+            upper.translate(0, -cellSize);
+            tempCell = grid.getCellInPosition(upper);
 
-            checkProcessedCellAndAddToContainer(queue, toUp, tempCell);
+            checkProcessedCellAndAddToContainer(queue, upper, tempCell);
 
             //Get right cell
-            Position toRight = new Position(current);
-            toRight.translate(cellSize, 0);
-            tempCell = grid.getCellInPosition(toRight);
+            Position righter = new Position(current);
+            righter.translate(cellSize, 0);
+            tempCell = grid.getCellInPosition(righter);
 
-            checkProcessedCellAndAddToContainer(queue, toRight, tempCell);
+            checkProcessedCellAndAddToContainer(queue, righter, tempCell);
 
             //Get left cell
-            Position toLeft = new Position(current);
-            toLeft.translate(-cellSize, 0);
-            tempCell = grid.getCellInPosition(toLeft);
+            Position lefter = new Position(current);
+            lefter.translate(-cellSize, 0);
+            tempCell = grid.getCellInPosition(lefter);
 
-            checkProcessedCellAndAddToContainer(queue, toLeft, tempCell);
+            checkProcessedCellAndAddToContainer(queue, lefter, tempCell);
         }
-        System.out.println("POINTER: Operation took " + (System.nanoTime() - start) / 1000000 + " ms.");
+        System.out.println("POINTER: Operation took " + (System.currentTimeMillis() - start) + " ms.");
     }
 
     private void checkProcessedCellAndAddToContainer(LinkedList<Position> container, Position position, Cell cell) {
-        //If the cell is not painter or matches the seeked cell, add it to container
-        if (cell != null && cell.isPainted() && cell.getColor() == color) {
+        if (cell == null) {
+            return;
+        }
+
+        if (cell.isPainted() && cell.getColor() == color) {
             container.offer(position);
         }
 
-        if (cell != null && !cell.isPainted()) {
+        if (!cell.isPainted()) {
             container.offer(position);
         }
     }
 
     private void processCleanCell(Cell tempCell) {
-        //If the cell is clear paint it white so it doesn't reenter the queue
-        if (tempCell != null && !tempCell.isPainted()) {
-            tempCell.setColor(Color.WHITE);
-            tempCell.draw();
+        if (tempCell.isPainted()) {
+            return;
         }
+
+        tempCell.setColor(Color.WHITE);
+        tempCell.draw();
     }
 
     private void emptyContainer(LinkedList<Position> list) {
-
         while (!list.isEmpty()) {
-            Position current = list.poll();
-            Cell newCell = grid.getCellInPosition(current);
-            newCell.setColor(Color.GREEN);
-            newCell.draw();
+            Cell newCell = grid.getCellInPosition(list.poll());
+
+            if (!newCell.isPainted()) {
+                newCell.setColor(Color.GREEN);
+                newCell.draw();
+            }
         }
     }
 
     private void reversePath(Position position) {
-
         if (position.getOrigin() == null) {
             return;
         }
 
-        Position origin = position.getOrigin();
-        Cell lastCell = grid.getCellInPosition(origin);
-
+        Cell lastCell = grid.getCellInPosition(position.getOrigin());
         lastCell.setColor(color);
         lastCell.draw();
 
-        reversePath(origin);
+        reversePath(position.getOrigin());
     }
 }
