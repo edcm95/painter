@@ -1,6 +1,7 @@
 package org.academiadecodigo.gridpaint;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;

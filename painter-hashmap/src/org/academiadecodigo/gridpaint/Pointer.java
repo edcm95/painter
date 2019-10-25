@@ -1,10 +1,11 @@
 package org.academiadecodigo.gridpaint;
 
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Maze;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-import java.util.LinkedList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Pointer {
 
@@ -14,8 +15,11 @@ public class Pointer {
     private Rectangle pointerShape;
     private Grid grid;
     private Color color;
+    private ExecutorService threadPool;
 
     public Pointer(Position position, Grid grid) {
+        this.threadPool = Executors.newCachedThreadPool();
+
         this.grid = grid;
         this.cellSize = grid.getCellSize();
         this.position = position;
@@ -99,69 +103,25 @@ public class Pointer {
     }
 
     public void fill() {
-        long start = System.nanoTime();
-        Position rootPosition = new Position(position.getX(), position.getY());
 
-        LinkedList<Position> positionStack = new LinkedList<>();
-        positionStack.push(rootPosition);
-
-        while (!positionStack.isEmpty()) {
-
-            Position current = positionStack.pop();
-            Cell tempCell = grid.getCellInPosition(current);
-
-            //Process current cell
-            if (tempCell != null && !tempCell.isPainted()) {
-                tempCell.setColor(color);
-                tempCell.draw();
-            }
-
-            //Get right cell, if valid put it into queue
-
-            Position toRight = new Position(current);
-            toRight.translate(cellSize, 0);
-            tempCell = grid.getCellInPosition(toRight);
-
-            if (tempCell != null && !tempCell.isPainted()) {
-                positionStack.push(toRight);
-            }
-
-            //Get upper cell, if valid put it into queue
-
-            Position toUp = new Position(current);
-            toUp.translate(0, -cellSize);
-            tempCell = grid.getCellInPosition(toUp);
-
-            if (tempCell != null && !tempCell.isPainted()) {
-                positionStack.push(toUp);
-            }
-
-            //Get lower cell, if valid put it into queu
-
-            Position toDown = new Position(current);
-            toDown.translate(0, cellSize);
-            tempCell = grid.getCellInPosition(toDown);
-
-            if (tempCell != null && !tempCell.isPainted()) {
-                positionStack.push(toDown);
-            }
-
-            //get cell to the left and do the same
-
-            Position toLeft = new Position(current);
-            toLeft.translate(-cellSize, 0);
-            tempCell = grid.getCellInPosition(toLeft);
-
-            if (tempCell != null && !tempCell.isPainted()) {
-                positionStack.push(toLeft);
-            }
+        if(grid.getCellInPosition(position).isPainted()) {
+            threadPool.execute(new RepaintFill(grid,
+                    color,
+                    grid.getCellInPosition(position).getColor(),
+                    position,
+                    cellSize));
+            System.out.println(Thread.activeCount());
+            return;
         }
-        System.out.println("POINTER: Operation took " + (System.nanoTime() - start) / 1000000 + " ms.");
+
+        threadPool.execute(new Fill(grid, color, position, cellSize));
+        System.out.println(Thread.activeCount());
     }
 
     public void doTheMaze() {
-        Maze maze = new Maze(color, grid, position, cellSize);
-        (new Thread(maze)).start();
+        new Thread(new Maze(color, grid, position, cellSize)).start();
+
+        System.out.println(Thread.activeCount());
     }
 
     public void setPointerWritingStatus(boolean value) {

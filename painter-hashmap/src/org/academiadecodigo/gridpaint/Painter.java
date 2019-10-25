@@ -1,14 +1,10 @@
 package org.academiadecodigo.gridpaint;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.PainterKeyboard;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Saver;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Painter {
 
@@ -21,7 +17,6 @@ public class Painter {
     private Text saveSlot;
     private Grid grid;
     private Pointer pointer;
-
 
     public Painter(double cellSize, double width, double height) {
         this.cellSize = cellSize;

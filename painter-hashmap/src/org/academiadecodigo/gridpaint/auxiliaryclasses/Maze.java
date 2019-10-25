@@ -1,8 +1,6 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
-import org.academiadecodigo.gridpaint.Cell;
 import org.academiadecodigo.gridpaint.Grid;
-import org.academiadecodigo.gridpaint.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
@@ -49,32 +47,24 @@ public class Maze implements Runnable {
 
             processCleanCell(tempCell);
 
-            //Get lower cell
             Position lower = new Position(current);
             lower.translate(0, cellSize);
             tempCell = grid.getCellInPosition(lower);
-
             checkProcessedCellAndAddToContainer(queue, lower, tempCell);
 
-            //Get upper cell
             Position upper = new Position(current);
             upper.translate(0, -cellSize);
             tempCell = grid.getCellInPosition(upper);
-
             checkProcessedCellAndAddToContainer(queue, upper, tempCell);
 
-            //Get right cell
             Position righter = new Position(current);
             righter.translate(cellSize, 0);
             tempCell = grid.getCellInPosition(righter);
-
             checkProcessedCellAndAddToContainer(queue, righter, tempCell);
 
-            //Get left cell
             Position lefter = new Position(current);
             lefter.translate(-cellSize, 0);
             tempCell = grid.getCellInPosition(lefter);
-
             checkProcessedCellAndAddToContainer(queue, lefter, tempCell);
         }
         System.out.println("POINTER: Operation took " + (System.currentTimeMillis() - start) + " ms.");

@@ -1,7 +1,5 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
-import org.academiadecodigo.gridpaint.Cell;
-import org.academiadecodigo.gridpaint.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.io.*;

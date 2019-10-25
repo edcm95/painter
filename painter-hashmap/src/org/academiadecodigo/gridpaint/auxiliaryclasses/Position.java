@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint;
+package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import java.util.Objects;
 

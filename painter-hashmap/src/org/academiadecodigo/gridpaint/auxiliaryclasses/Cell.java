@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint;
+package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -6,23 +6,17 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Cell {
 
     private Color color;
-    private Position position;
     private Rectangle cellShape;
     private boolean painted;
 
     public Cell(Position position, double size) {
 
         cellShape = new Rectangle(position.getX(), position.getY(), size, size);
-        this.position = position;
     }
 
     public void initCell() {
-        painted = false;
         cellShape.draw();
-    }
-
-    public Position getPosition() {
-        return position;
+        painted = false;
     }
 
     public void draw() {
