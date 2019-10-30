@@ -2,6 +2,7 @@ package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.gridpaint.Painter;
 import org.academiadecodigo.gridpaint.Pointer;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -67,19 +68,19 @@ public class PainterKeyboard implements KeyboardHandler {
 
         switch (event.getKey()) {
             case (KeyboardEvent.KEY_H):
-                pointer.moveLeft();
+                pointer.move(Direction.LEFT);
                 break;
 
             case (KeyboardEvent.KEY_L):
-                pointer.moveRight();
+                pointer.move(Direction.RIGHT);
                 break;
 
             case (KeyboardEvent.KEY_K):
-                pointer.moveDown();
+                pointer.move(Direction.DOWN);
                 break;
 
             case (KeyboardEvent.KEY_J):
-                pointer.moveUp();
+                pointer.move(Direction.UP);
                 break;
 
             case (KeyboardEvent.KEY_SPACE):
@@ -152,11 +153,11 @@ public class PainterKeyboard implements KeyboardHandler {
                 break;
 
             case (KeyboardEvent.KEY_F):
-                pointer.fill();
+                pointer.runAlgorithm(Algorithm.FILL);
                 break;
 
             case (KeyboardEvent.KEY_M):
-                pointer.doTheMaze();
+                pointer.runAlgorithm(Algorithm.MAZE);
                 break;
 
         }

@@ -32,7 +32,6 @@ public class Cell {
     }
 
     public void writeCell(byte[] value) {
-
         if (value[0] == 0) {
             erase();
             return;
@@ -70,7 +69,6 @@ public class Cell {
             }
             draw();
         }
-
     }
 
     public void setColor(Color color) {

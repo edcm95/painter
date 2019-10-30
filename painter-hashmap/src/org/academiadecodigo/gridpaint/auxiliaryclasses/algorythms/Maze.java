@@ -1,6 +1,8 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms;
 
 import org.academiadecodigo.gridpaint.Grid;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;

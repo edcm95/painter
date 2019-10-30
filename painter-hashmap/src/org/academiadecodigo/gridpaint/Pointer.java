@@ -1,6 +1,10 @@
 package org.academiadecodigo.gridpaint;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Algorithm;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Fill;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Maze;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.RepaintFill;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -29,44 +33,25 @@ public class Pointer {
         this.color = Color.CYAN;
     }
 
-    //---------------------------MOVEMENT METHODS
-    public void moveLeft() {
-        if (position.getX() < grid.getBoard().getX() + cellSize) {
+    public void move(Direction direction) {
+        if (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + cellSize) {
             return;
         }
 
-        position.translate(-cellSize, 0);
-        pointerShape.translate(-cellSize, 0);
-        paintCell();
-    }
-
-    public void moveRight() {
-        if (position.getX() > grid.getBoard().getWidth() - cellSize) {
+        if (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - cellSize) {
             return;
         }
 
-        position.translate(cellSize, 0);
-        pointerShape.translate(cellSize, 0);
-        paintCell();
-    }
-
-    public void moveUp() {
-        if (position.getY() < grid.getBoard().getY() + cellSize) {
+        if (direction == Direction.UP && position.getY() < grid.getBoard().getY() + cellSize) {
             return;
         }
 
-        position.translate(0, -cellSize);
-        pointerShape.translate(0, -cellSize);
-        paintCell();
-    }
-
-    public void moveDown() {
-        if (position.getY() > grid.getBoard().getHeight() - cellSize) {
+        if (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - cellSize) {
             return;
         }
 
-        position.translate(0, cellSize);
-        pointerShape.translate(0, cellSize);
+        position.translate(direction.getDeltaX() * cellSize, direction.getDeltaY() * cellSize);
+        pointerShape.translate(direction.getDeltaX() * cellSize, direction.getDeltaY() * cellSize);
         paintCell();
     }
 
@@ -102,26 +87,15 @@ public class Pointer {
         cell.draw();
     }
 
-    public void fill() {
-
-        if(grid.getCellInPosition(position).isPainted()) {
-            threadPool.execute(new RepaintFill(grid,
-                    color,
-                    grid.getCellInPosition(position).getColor(),
-                    position,
-                    cellSize));
-            System.out.println(Thread.activeCount());
-            return;
+    public void runAlgorithm(Algorithm algorithm) {
+        switch (algorithm) {
+            case FILL:
+                fill();
+                break;
+            case MAZE:
+                doTheMaze();
+                break;
         }
-
-        threadPool.execute(new Fill(grid, color, position, cellSize));
-        System.out.println(Thread.activeCount());
-    }
-
-    public void doTheMaze() {
-        new Thread(new Maze(color, grid, position, cellSize)).start();
-
-        System.out.println(Thread.activeCount());
     }
 
     public void setPointerWritingStatus(boolean value) {
@@ -136,5 +110,29 @@ public class Pointer {
     public void draw() {
         pointerShape.setColor(color);
         pointerShape.fill();
+    }
+
+    private void fill() {
+        if (grid.getCellInPosition(position).isPainted()) {
+            threadPool.execute(repaintFillGetInstance());
+            System.out.println(Thread.activeCount());
+            return;
+        }
+
+        threadPool.execute(new Fill(grid, color, position, cellSize));
+        System.out.println(Thread.activeCount());
+    }
+
+    private RepaintFill repaintFillGetInstance() {
+        return new RepaintFill(grid,
+                color,
+                grid.getCellInPosition(position).getColor(),
+                position,
+                cellSize);
+    }
+
+    private void doTheMaze() {
+        new Thread(new Maze(color, grid, position, cellSize)).start();
+        System.out.println(Thread.activeCount());
     }
 }
