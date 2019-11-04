@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms;
 
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
@@ -7,14 +7,14 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
 
-public class Maze implements Runnable {
+public class Maze implements Algorithm {
 
     private Color color;
     private Grid grid;
     private Position root;
     private double cellSize;
 
-    public Maze(Color color, Grid grid, Position root, double cellSize) {
+    public Maze(Grid grid, Color color, Position root, double cellSize) {
         this.grid = grid;
         this.root = root;
         this.color = color;
@@ -42,7 +42,6 @@ public class Maze implements Runnable {
             //If cell is the seeked cell, empty the container and reverse the Path
             if (tempCell.isPainted() && tempCell.getColor() == color) {
                 reversePath(current);
-                System.out.println(queue.size());
                 emptyContainer(queue);
                 break;
             }

@@ -2,7 +2,7 @@ package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.gridpaint.Painter;
 import org.academiadecodigo.gridpaint.Pointer;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Algorithm;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -14,7 +14,7 @@ public class PainterKeyboard implements KeyboardHandler {
     private Pointer pointer;
     private Painter painter;
 
-    public PainterKeyboard(Pointer pointer, Painter painter){
+    public PainterKeyboard(Pointer pointer, Painter painter) {
         this.pointer = pointer;
         this.painter = painter;
     }
@@ -145,19 +145,19 @@ public class PainterKeyboard implements KeyboardHandler {
                 break;
 
             case (KeyboardEvent.KEY_B):
-                painter.changeSlot(1);
+                painter.increaseSaveSlot();
                 break;
 
             case (KeyboardEvent.KEY_N):
-                painter.changeSlot(-1);
+                painter.decreaseSaveSlot();
                 break;
 
             case (KeyboardEvent.KEY_F):
-                pointer.runAlgorithm(Algorithm.FILL);
+                pointer.runAlgorithm(AlgorithmName.FILL);
                 break;
 
             case (KeyboardEvent.KEY_M):
-                pointer.runAlgorithm(Algorithm.MAZE);
+                pointer.runAlgorithm(AlgorithmName.MAZE);
                 break;
 
         }

@@ -1,13 +1,12 @@
 package org.academiadecodigo.gridpaint;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Algorithm;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Fill;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.Maze;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms.RepaintFill;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.*;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.InitFill;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -57,7 +56,6 @@ public class Pointer {
 
     public void recenter() {
         Position lastPosition = new Position(position.getX(), position.getY());
-
         position.setPosition(grid.getBoard().getX(), grid.getBoard().getY());
 
         double deltaX = position.getX() - lastPosition.getX();
@@ -87,15 +85,14 @@ public class Pointer {
         cell.draw();
     }
 
-    public void runAlgorithm(Algorithm algorithm) {
-        switch (algorithm) {
-            case FILL:
-                fill();
-                break;
-            case MAZE:
-                doTheMaze();
-                break;
-        }
+    public void runAlgorithm(AlgorithmName algorithmName) {
+        HashMap<AlgorithmName, Algorithm> algorithmMap = new HashMap<>();
+
+        algorithmMap.put(AlgorithmName.FILL, InitFill.getFillInstance(grid, color, position, cellSize));
+        algorithmMap.put(AlgorithmName.MAZE, new Maze(grid, color, position, cellSize));
+
+        threadPool.execute(algorithmMap.get(algorithmName));
+        System.out.println("Threads active: " + Thread.activeCount());
     }
 
     public void setPointerWritingStatus(boolean value) {
@@ -110,29 +107,5 @@ public class Pointer {
     public void draw() {
         pointerShape.setColor(color);
         pointerShape.fill();
-    }
-
-    private void fill() {
-        if (grid.getCellInPosition(position).isPainted()) {
-            threadPool.execute(repaintFillGetInstance());
-            System.out.println(Thread.activeCount());
-            return;
-        }
-
-        threadPool.execute(new Fill(grid, color, position, cellSize));
-        System.out.println(Thread.activeCount());
-    }
-
-    private RepaintFill repaintFillGetInstance() {
-        return new RepaintFill(grid,
-                color,
-                grid.getCellInPosition(position).getColor(),
-                position,
-                cellSize);
-    }
-
-    private void doTheMaze() {
-        new Thread(new Maze(color, grid, position, cellSize)).start();
-        System.out.println(Thread.activeCount());
     }
 }

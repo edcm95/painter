@@ -68,7 +68,7 @@ public class Painter {
         painterKeyboard.keyboardSetup();
     }
 
-    public void clearGrid(){
+    public void clearGrid() {
         grid.resetGrid();
     }
 
@@ -82,17 +82,23 @@ public class Painter {
         saver.loadData(grid.getMapOfCells());
     }
 
-    public void changeSlot(int value) {
+    public void increaseSaveSlot() {
+        if (slot == 3) {
+            return;
+        }
         saveSlot.delete();
-        slot = slot + value;
+        slot++;
 
-        if (slot < 0) {
-            slot = 0;
-        }
+        saveSlot.setText("Save slot: " + slot);
+        saveSlot.draw();
+    }
 
-        if (slot > 3) {
-            slot = 3;
+    public void decreaseSaveSlot() {
+        if (slot == 0) {
+            return;
         }
+        saveSlot.delete();
+        slot--;
 
         saveSlot.setText("Save slot: " + slot);
         saveSlot.draw();

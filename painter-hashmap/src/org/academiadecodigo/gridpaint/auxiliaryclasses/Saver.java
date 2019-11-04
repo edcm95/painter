@@ -24,7 +24,6 @@ public class Saver {
                 outputStream.write(decomposeCell(map.get(position)));
             }
 
-
         } catch (IOException e) {
             System.out.println("SAVER: Something went wrong writing file.");
 

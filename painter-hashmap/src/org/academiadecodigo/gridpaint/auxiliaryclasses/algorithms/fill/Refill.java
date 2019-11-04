@@ -1,13 +1,14 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill;
 
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
 
-public class RepaintFill implements Runnable {
+public class Refill implements Algorithm {
 
     private Grid grid;
     private Color color;
@@ -15,10 +16,10 @@ public class RepaintFill implements Runnable {
     private Position position;
     private double cellSize;
 
-    public RepaintFill(Grid grid, Color color, Color rootColor, Position position, double cellSize) {
+    public Refill(Grid grid, Color color, Position position, double cellSize) {
         this.grid = grid;
         this.color = color;
-        this.rootColor = rootColor;
+        this.rootColor = grid.getCellInPosition(position).getColor();
         this.position = position;
         this.cellSize = cellSize;
     }

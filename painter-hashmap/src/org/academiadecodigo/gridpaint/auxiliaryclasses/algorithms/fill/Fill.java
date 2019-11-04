@@ -1,12 +1,13 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorythms;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill;
 
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import java.util.LinkedList;
 
-public class Fill implements Runnable {
+public class Fill implements Algorithm {
 
     private Grid grid;
     private Color color;
