@@ -26,6 +26,10 @@ public class Refill implements Algorithm {
 
     @Override
     public void run() {
+        if (color == rootColor) {
+            return;
+        }
+
         long start = System.currentTimeMillis();
         Position rootPosition = new Position(position.getX(), position.getY());
 
