@@ -3,7 +3,7 @@ package org.academiadecodigo.gridpaint;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.InitFill;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.LangtonAnt;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.LangtonAnt;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 

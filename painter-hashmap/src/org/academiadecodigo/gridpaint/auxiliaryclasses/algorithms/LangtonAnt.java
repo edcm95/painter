@@ -1,10 +1,9 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms;
 
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Direction;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class LangtonAnt implements Algorithm {
