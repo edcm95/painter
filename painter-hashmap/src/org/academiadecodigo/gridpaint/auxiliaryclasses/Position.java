@@ -32,6 +32,11 @@ public class Position {
         this.Y = Y + deltaY;
     }
 
+    public void translate(Direction direction, double step){
+        this.X = X + (step * direction.getDeltaX());
+        this.Y = Y + (step * direction.getDeltaY());
+    }
+
     public void setPosition(double X, double Y) {
         this.X = X;
         this.Y = Y;

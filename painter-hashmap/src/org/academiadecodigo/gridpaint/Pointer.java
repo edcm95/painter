@@ -3,6 +3,7 @@ package org.academiadecodigo.gridpaint;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.InitFill;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.LangtonAnt;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -90,6 +91,7 @@ public class Pointer {
 
         algorithmMap.put(AlgorithmName.FILL, InitFill.getFillInstance(grid, color, position, cellSize));
         algorithmMap.put(AlgorithmName.MAZE, new Maze(grid, color, position, cellSize));
+        algorithmMap.put(AlgorithmName.LANGTON_ANT, new LangtonAnt(grid, color, position, cellSize));
 
         threadPool.execute(algorithmMap.get(algorithmName));
         System.out.println("Threads active: " + Thread.activeCount());

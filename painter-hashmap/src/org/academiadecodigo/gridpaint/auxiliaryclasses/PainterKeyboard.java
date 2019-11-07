@@ -47,6 +47,7 @@ public class PainterKeyboard implements KeyboardHandler {
                 KeyboardEvent.KEY_N,
                 KeyboardEvent.KEY_F,
                 KeyboardEvent.KEY_M,
+                KeyboardEvent.KEY_Y,
         };
 
 
@@ -158,6 +159,10 @@ public class PainterKeyboard implements KeyboardHandler {
 
             case (KeyboardEvent.KEY_M):
                 pointer.runAlgorithm(AlgorithmName.MAZE);
+                break;
+
+            case (KeyboardEvent.KEY_Y):
+                pointer.runAlgorithm(AlgorithmName.LANGTON_ANT);
                 break;
 
         }
