@@ -27,10 +27,10 @@ public class MessageHandler {
         Text text3 = new Text(text2.getX(), text2.getY() + 40, "1 - Cyan, 2 - Yellow, 3 - Green");
         Text text4 = new Text(text3.getX(), text3.getY() + 20, "4 - Pink, 5 - Magenta, 6 - Red");
         Text text5 = new Text(text4.getX(), text4.getY() + 20, "7 - Blue, 8 - Black, 9 - White");
-        Text text6 = new Text(text5.getX(), text5.getY() + 40, "R - Recenter pointer, F - Fill, M - Maze");
+        Text text6 = new Text(text5.getX(), text5.getY() + 40, "R - Recenter pointer, E - Cycle algorithm");
         Text text7 = new Text(text6.getX(), text6.getY() + 40, "B - Increase slot, N - Decrease slot, P - Exit");
         saveSlot = new Text(text7.getX(), text7.getY() + 20, "Save slot: " + painter.getSaveSlot());
-        algorithmName = new Text(saveSlot.getX(), saveSlot.getY() + 20, "Algorithm: ");
+        algorithmName = new Text(saveSlot.getX(), saveSlot.getY() + 20, "Algorithm: " + painter.getCurrentAlgorithm());
 
         //Draw
         text0.draw();
@@ -42,6 +42,7 @@ public class MessageHandler {
         text6.draw();
         text7.draw();
         saveSlot.draw();
+        algorithmName.draw();
     }
 
     public void updateSaveSlot() {

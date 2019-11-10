@@ -4,6 +4,7 @@ import org.academiadecodigo.gridpaint.auxiliaryclasses.MessageHandler;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.PainterKeyboard;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Saver;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Painter {
@@ -14,12 +15,15 @@ public class Painter {
     private double width;
     private double height;
     private int slot;
+    private int algorithmIndex;
     private Grid grid;
     private Pointer pointer;
+    private MessageHandler messageHandler;
 
     public Painter(double cellSize, double width, double height) {
         this.cellSize = cellSize;
         this.slot = 0;
+        this.algorithmIndex = 0;
         this.width = width;
         this.height = height;
         init();
@@ -29,7 +33,7 @@ public class Painter {
         //Primary instance
         Rectangle table = new Rectangle(BORDER, BORDER, width, height);
 
-        MessageHandler messageHandler = new MessageHandler(table, this);
+        messageHandler = new MessageHandler(table, this);
 
         //Primary draw
         table.draw();
@@ -63,11 +67,14 @@ public class Painter {
         saver.loadData(grid.getMapOfCells());
     }
 
-    public int getSaveSlot(){
+    public int getSaveSlot() {
         return slot;
     }
 
-    // TODO: 08/11/2019 Implement this
+    public AlgorithmName getCurrentAlgorithm() {
+        return AlgorithmName.values()[algorithmIndex];
+    }
+
     public void increaseSaveSlot() {
         if (slot == 3) {
             return;
@@ -82,5 +89,14 @@ public class Painter {
         }
         slot--;
         messageHandler.updateSaveSlot();
+    }
+
+    public void cycleAlgorithm() {
+        algorithmIndex++;
+
+        if (algorithmIndex >= AlgorithmName.values().length) {
+            algorithmIndex = 0;
+        }
+        messageHandler.updateAlgorithm(AlgorithmName.values()[algorithmIndex]);
     }
 }

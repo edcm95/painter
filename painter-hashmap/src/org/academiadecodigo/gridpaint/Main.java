@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Painter painter = new Painter(10, 1200, 900);
+        Painter painter = new Painter(20, 1200, 900);
         painter.start();
     }
 }

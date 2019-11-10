@@ -45,9 +45,8 @@ public class PainterKeyboard implements KeyboardHandler {
                 KeyboardEvent.KEY_R,
                 KeyboardEvent.KEY_B,
                 KeyboardEvent.KEY_N,
-                KeyboardEvent.KEY_F,
+                KeyboardEvent.KEY_E,
                 KeyboardEvent.KEY_M,
-                KeyboardEvent.KEY_Y,
         };
 
 
@@ -153,18 +152,13 @@ public class PainterKeyboard implements KeyboardHandler {
                 painter.decreaseSaveSlot();
                 break;
 
-            case (KeyboardEvent.KEY_F):
-                pointer.runAlgorithm(AlgorithmName.FILL);
+            case (KeyboardEvent.KEY_E):
+                painter.cycleAlgorithm();
                 break;
 
             case (KeyboardEvent.KEY_M):
-                pointer.runAlgorithm(AlgorithmName.MAZE);
+                pointer.runAlgorithm(painter.getCurrentAlgorithm());
                 break;
-
-            case (KeyboardEvent.KEY_Y):
-                pointer.runAlgorithm(AlgorithmName.LANGTON_ANT);
-                break;
-
         }
     }
 
