@@ -75,19 +75,11 @@ public class Painter {
         return AlgorithmName.values()[algorithmIndex];
     }
 
-    public void increaseSaveSlot() {
-        if (slot == 3) {
-            return;
-        }
+    public void cycleSaveSlot() {
         slot++;
-        messageHandler.updateSaveSlot();
-    }
-
-    public void decreaseSaveSlot() {
-        if (slot == 0) {
-            return;
+        if (slot > 3) {
+            slot = 0;
         }
-        slot--;
         messageHandler.updateSaveSlot();
     }
 

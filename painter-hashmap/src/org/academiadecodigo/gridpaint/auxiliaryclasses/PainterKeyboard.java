@@ -2,7 +2,6 @@ package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.gridpaint.Painter;
 import org.academiadecodigo.gridpaint.Pointer;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -44,9 +43,8 @@ public class PainterKeyboard implements KeyboardHandler {
                 KeyboardEvent.KEY_C,
                 KeyboardEvent.KEY_R,
                 KeyboardEvent.KEY_B,
-                KeyboardEvent.KEY_N,
                 KeyboardEvent.KEY_E,
-                KeyboardEvent.KEY_M,
+                KeyboardEvent.KEY_N,
         };
 
 
@@ -67,6 +65,10 @@ public class PainterKeyboard implements KeyboardHandler {
     public void keyPressed(KeyboardEvent event) {
 
         switch (event.getKey()) {
+            case (KeyboardEvent.KEY_P):
+                System.exit(0);
+                break;
+
             case (KeyboardEvent.KEY_H):
                 pointer.move(Direction.LEFT);
                 break;
@@ -86,6 +88,14 @@ public class PainterKeyboard implements KeyboardHandler {
             case (KeyboardEvent.KEY_SPACE):
                 pointer.setPointerWritingStatus(true);
                 pointer.paintCell();
+                break;
+
+            case (KeyboardEvent.KEY_R):
+                pointer.recenter();
+                break;
+
+            case (KeyboardEvent.KEY_C):
+                painter.clearGrid();
                 break;
 
             case (KeyboardEvent.KEY_1):
@@ -132,31 +142,15 @@ public class PainterKeyboard implements KeyboardHandler {
                 painter.save();
                 break;
 
-            case (KeyboardEvent.KEY_P):
-                System.exit(0);
-                break;
-
-            case (KeyboardEvent.KEY_C):
-                painter.clearGrid();
-                break;
-
-            case (KeyboardEvent.KEY_R):
-                pointer.recenter();
-                break;
-
             case (KeyboardEvent.KEY_B):
-                painter.increaseSaveSlot();
+                painter.cycleSaveSlot();
                 break;
 
             case (KeyboardEvent.KEY_N):
-                painter.decreaseSaveSlot();
-                break;
-
-            case (KeyboardEvent.KEY_E):
                 painter.cycleAlgorithm();
                 break;
 
-            case (KeyboardEvent.KEY_M):
+            case (KeyboardEvent.KEY_E):
                 pointer.runAlgorithm(painter.getCurrentAlgorithm());
                 break;
         }
