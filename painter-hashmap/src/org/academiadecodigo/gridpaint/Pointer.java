@@ -6,14 +6,13 @@ import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.fill.InitFill;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.LangtonAnt;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Pointer {
 
-    private boolean pointerWritingStatus;
+    private boolean writing;
     private double cellSize;
     private Position position;
     private Rectangle pointerShape;
@@ -21,9 +20,8 @@ public class Pointer {
     private Color color;
     private ExecutorService threadPool;
 
-    public Pointer(Position position, Grid grid) {
+    Pointer(Position position, Grid grid) {
         this.threadPool = Executors.newCachedThreadPool();
-
         this.grid = grid;
         this.cellSize = grid.getCellSize();
         this.position = position;
@@ -34,25 +32,20 @@ public class Pointer {
     }
 
     public void move(Direction direction) {
-        if (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + cellSize) {
-            return;
-        }
-
-        if (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - cellSize) {
-            return;
-        }
-
-        if (direction == Direction.UP && position.getY() < grid.getBoard().getY() + cellSize) {
-            return;
-        }
-
-        if (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - cellSize) {
+        if(availBoundaries(direction)){
             return;
         }
 
         position.translate(direction.getDeltaX() * cellSize, direction.getDeltaY() * cellSize);
         pointerShape.translate(direction.getDeltaX() * cellSize, direction.getDeltaY() * cellSize);
         paintCell();
+    }
+
+    private boolean availBoundaries(Direction direction){
+        return  (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + cellSize) ||
+                (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - cellSize) ||
+                (direction == Direction.UP && position.getY() < grid.getBoard().getY() + cellSize) ||
+                (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - cellSize);
     }
 
     public void recenter() {
@@ -66,7 +59,7 @@ public class Pointer {
     }
 
     public void paintCell() {
-        if (!pointerWritingStatus) {
+        if (!writing) {
             return;
         }
 
@@ -97,8 +90,8 @@ public class Pointer {
         System.out.println("Threads active: " + Thread.activeCount());
     }
 
-    public void setPointerWritingStatus(boolean value) {
-        pointerWritingStatus = value;
+    public void setWriting(boolean value) {
+        writing = value;
     }
 
     public void setColor(Color color) {
@@ -106,7 +99,7 @@ public class Pointer {
         draw();
     }
 
-    public void draw() {
+    void draw() {
         pointerShape.setColor(color);
         pointerShape.fill();
     }

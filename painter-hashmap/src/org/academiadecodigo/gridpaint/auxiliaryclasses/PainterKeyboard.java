@@ -86,7 +86,7 @@ public class PainterKeyboard implements KeyboardHandler {
                 break;
 
             case (KeyboardEvent.KEY_SPACE):
-                pointer.setPointerWritingStatus(true);
+                pointer.setWriting(true);
                 pointer.paintCell();
                 break;
 
@@ -160,7 +160,7 @@ public class PainterKeyboard implements KeyboardHandler {
     public void keyReleased(KeyboardEvent kEvent) {
         switch (kEvent.getKey()) {
             case (KeyboardEvent.KEY_SPACE):
-                pointer.setPointerWritingStatus(false);
+                pointer.setWriting(false);
                 break;
         }
     }

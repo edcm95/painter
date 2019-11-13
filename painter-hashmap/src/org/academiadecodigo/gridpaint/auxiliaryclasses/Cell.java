@@ -19,19 +19,19 @@ public class Cell {
         painted = false;
     }
 
-    public void draw() {
+    public synchronized void draw() {
         cellShape.setColor(color);
         cellShape.fill();
         painted = true;
     }
 
-    public void erase() {
+    public synchronized void erase() {
         cellShape.setColor(Color.BLACK);
         cellShape.draw();
         painted = false;
     }
 
-    public void writeCell(byte[] value) {
+    void writeCell(byte[] value) {
         if (value[0] == 0) {
             erase();
             return;
@@ -71,7 +71,7 @@ public class Cell {
         }
     }
 
-    public void setColor(Color color) {
+    public synchronized void setColor(Color color) {
         this.color = color;
     }
 
