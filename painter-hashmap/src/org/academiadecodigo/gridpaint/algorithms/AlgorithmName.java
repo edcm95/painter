@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms;
+package org.academiadecodigo.gridpaint.algorithms;
 
 public enum AlgorithmName {
     FILL("Fill"),

@@ -1,10 +1,10 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers.fill;
+package org.academiadecodigo.gridpaint.algorithms.searchers.fill;
 
-import org.academiadecodigo.gridpaint.Grid;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers.AbstractSearcher;
+import org.academiadecodigo.gridpaint.entities.Grid;
+import org.academiadecodigo.gridpaint.entities.Cell;
+import org.academiadecodigo.gridpaint.entities.Position;
+import org.academiadecodigo.gridpaint.algorithms.Algorithm;
+import org.academiadecodigo.gridpaint.algorithms.searchers.AbstractSearcher;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;

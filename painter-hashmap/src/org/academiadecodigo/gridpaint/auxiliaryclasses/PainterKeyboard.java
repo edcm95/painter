@@ -1,7 +1,7 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.gridpaint.Painter;
-import org.academiadecodigo.gridpaint.Pointer;
+import org.academiadecodigo.gridpaint.entities.Pointer;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

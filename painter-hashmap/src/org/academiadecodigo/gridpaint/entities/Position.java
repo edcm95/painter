@@ -1,6 +1,7 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses;
+package org.academiadecodigo.gridpaint.entities;
 
-import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.Direction;
+import org.academiadecodigo.gridpaint.config.Constants;
 
 import java.util.Objects;
 

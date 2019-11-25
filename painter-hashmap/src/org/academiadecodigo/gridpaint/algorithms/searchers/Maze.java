@@ -1,9 +1,9 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers;
+package org.academiadecodigo.gridpaint.algorithms.searchers;
 
-import org.academiadecodigo.gridpaint.Grid;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
+import org.academiadecodigo.gridpaint.entities.Grid;
+import org.academiadecodigo.gridpaint.entities.Cell;
+import org.academiadecodigo.gridpaint.entities.Position;
+import org.academiadecodigo.gridpaint.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
@@ -23,12 +23,6 @@ public class Maze extends AbstractSearcher implements Algorithm {
         queue.offer(rootPosition);
 
         while (!queue.isEmpty()) {
-            if (queue.size() > 8000000) {
-                System.out.println("POINTER: Queue size exceeded 8 Million objects, operation aborted.");
-                emptyContainer(queue);
-                break;
-            }
-
             //Get a cell from the container
             Position current = queue.poll();
             Cell tempCell = grid.getCellInPosition(current);
@@ -40,7 +34,9 @@ public class Maze extends AbstractSearcher implements Algorithm {
                 break;
             }
 
-            processCleanCell(tempCell);
+            if (!isCellCleanIfSoProcess(tempCell)) {
+                continue;
+            }
 
             processNeighbouringCells(current, tempCell, queue);
         }
@@ -63,13 +59,14 @@ public class Maze extends AbstractSearcher implements Algorithm {
     }
 
 
-    private void processCleanCell(Cell tempCell) {
+    private boolean isCellCleanIfSoProcess(Cell tempCell) {
         if (tempCell.isPainted()) {
-            return;
+            return false;
         }
 
         tempCell.setColor(Color.WHITE);
         tempCell.draw();
+        return true;
     }
 
     private void emptyContainer(LinkedList<Position> list) {

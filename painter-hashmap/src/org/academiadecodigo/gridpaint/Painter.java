@@ -2,10 +2,12 @@ package org.academiadecodigo.gridpaint;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.MessageHandler;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.PainterKeyboard;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.entities.Grid;
+import org.academiadecodigo.gridpaint.entities.Pointer;
+import org.academiadecodigo.gridpaint.entities.Position;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Saver;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
+import org.academiadecodigo.gridpaint.algorithms.AlgorithmName;
+import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Painter {

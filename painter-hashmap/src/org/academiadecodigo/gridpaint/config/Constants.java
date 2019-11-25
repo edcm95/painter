@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.config;
+package org.academiadecodigo.gridpaint.config;
 
 public class Constants {
 

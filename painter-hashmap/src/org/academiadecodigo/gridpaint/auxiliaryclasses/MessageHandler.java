@@ -1,7 +1,7 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
 import org.academiadecodigo.gridpaint.Painter;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
+import org.academiadecodigo.gridpaint.algorithms.AlgorithmName;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 

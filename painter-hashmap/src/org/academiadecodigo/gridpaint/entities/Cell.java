@@ -1,6 +1,7 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses;
+package org.academiadecodigo.gridpaint.entities;
 
-import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
+import org.academiadecodigo.gridpaint.config.Constants;
+import org.academiadecodigo.gridpaint.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -31,7 +32,7 @@ public class Cell {
         painted = false;
     }
 
-    void writeCell(byte[] value) {
+    public void writeCell(byte[] value) {
         if (value[0] == 0) {
             erase();
             return;

@@ -1,11 +1,11 @@
-package org.academiadecodigo.gridpaint;
+package org.academiadecodigo.gridpaint.entities;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.*;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers.fill.InitFill;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.LangtonAnt;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers.Maze;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
+import org.academiadecodigo.gridpaint.algorithms.*;
+import org.academiadecodigo.gridpaint.algorithms.searchers.fill.InitFill;
+import org.academiadecodigo.gridpaint.algorithms.LangtonAnt;
+import org.academiadecodigo.gridpaint.algorithms.searchers.Maze;
+import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class Pointer {
     private Color color;
     private ExecutorService threadPool;
 
-    Pointer(Position position, Grid grid) {
+    public Pointer(Position position, Grid grid) {
         this.threadPool = Executors.newCachedThreadPool();
         this.grid = grid;
         this.position = position;
@@ -99,7 +99,7 @@ public class Pointer {
         draw();
     }
 
-    void draw() {
+    public void draw() {
         pointerShape.setColor(color);
         pointerShape.fill();
     }

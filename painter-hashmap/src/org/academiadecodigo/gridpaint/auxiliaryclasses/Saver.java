@@ -1,7 +1,8 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
+import org.academiadecodigo.gridpaint.entities.Cell;
+import org.academiadecodigo.gridpaint.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-
 import java.io.*;
 import java.util.HashMap;
 

@@ -1,8 +1,6 @@
-package org.academiadecodigo.gridpaint;
+package org.academiadecodigo.gridpaint.entities;
 
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
-import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
+import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
