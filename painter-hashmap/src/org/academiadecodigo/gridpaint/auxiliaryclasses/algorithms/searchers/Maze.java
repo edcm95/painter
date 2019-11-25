@@ -1,29 +1,23 @@
-package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms;
+package org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.searchers;
 
 import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
 
-public class Maze implements Algorithm {
+public class Maze extends AbstractSearcher implements Algorithm {
 
-    private Color color;
-    private Grid grid;
-    private Position root;
-    private double cellSize;
 
-    public Maze(Grid grid, Color color, Position root, double cellSize) {
-        this.grid = grid;
-        this.root = root;
-        this.color = color;
-        this.cellSize = cellSize;
+    public Maze(Grid grid, Color color, Position position) {
+        super(grid, color, position);
     }
 
     public void run() {
         long start = System.currentTimeMillis();
-        Position rootPosition = new Position(root.getX(), root.getY());
+        Position rootPosition = new Position(position.getX(), position.getY());
 
         LinkedList<Position> queue = new LinkedList<>();
         queue.offer(rootPosition);
@@ -48,30 +42,13 @@ public class Maze implements Algorithm {
 
             processCleanCell(tempCell);
 
-            Position lower = new Position(current);
-            lower.translate(0, cellSize);
-            tempCell = grid.getCellInPosition(lower);
-            checkProcessedCellAndAddToContainer(queue, lower, tempCell);
-
-            Position upper = new Position(current);
-            upper.translate(0, -cellSize);
-            tempCell = grid.getCellInPosition(upper);
-            checkProcessedCellAndAddToContainer(queue, upper, tempCell);
-
-            Position righter = new Position(current);
-            righter.translate(cellSize, 0);
-            tempCell = grid.getCellInPosition(righter);
-            checkProcessedCellAndAddToContainer(queue, righter, tempCell);
-
-            Position lefter = new Position(current);
-            lefter.translate(-cellSize, 0);
-            tempCell = grid.getCellInPosition(lefter);
-            checkProcessedCellAndAddToContainer(queue, lefter, tempCell);
+            processNeighbouringCells(current, tempCell, queue);
         }
         System.out.println("POINTER: Operation took " + (System.currentTimeMillis() - start) + " ms.");
     }
 
-    private void checkProcessedCellAndAddToContainer(LinkedList<Position> container, Position position, Cell cell) {
+    @Override
+    protected void checkCellAndAddToContainer(Cell cell, Position position, LinkedList<Position> container) {
         if (cell == null) {
             return;
         }
@@ -84,6 +61,7 @@ public class Maze implements Algorithm {
             container.offer(position);
         }
     }
+
 
     private void processCleanCell(Cell tempCell) {
         if (tempCell.isPainted()) {
@@ -116,4 +94,6 @@ public class Maze implements Algorithm {
 
         reversePath(position.getOrigin());
     }
+
+
 }

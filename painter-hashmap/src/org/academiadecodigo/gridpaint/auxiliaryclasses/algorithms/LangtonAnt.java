@@ -4,6 +4,7 @@ import org.academiadecodigo.gridpaint.Grid;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Direction;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class LangtonAnt implements Algorithm {
@@ -12,13 +13,11 @@ public class LangtonAnt implements Algorithm {
     private Color color;
     private Position position;
     private Direction direction;
-    private double cellSize;
 
-    public LangtonAnt(Grid grid, Color color, Position position, double cellSize) {
+    public LangtonAnt(Grid grid, Color color, Position position) {
         this.grid = grid;
         this.color = color;
         this.position = new Position(position.getX(), position.getY());
-        this.cellSize = cellSize;
         this.direction = initDirection();
     }
 
@@ -32,7 +31,7 @@ public class LangtonAnt implements Algorithm {
         int steps = 0;
 
         while (true) {
-            position.translate(direction, cellSize);
+            position.translate(direction);
             Cell currentCell = grid.getCellInPosition(position);
 
             if (currentCell == null) {

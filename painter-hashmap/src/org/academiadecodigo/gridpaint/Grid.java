@@ -2,6 +2,7 @@ package org.academiadecodigo.gridpaint;
 
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
@@ -9,12 +10,10 @@ import java.util.Iterator;
 
 public class Grid implements Iterable<Position> {
 
-    private double cellSize;
     private HashMap<Position, Cell> mapOfCells;
     private Rectangle board;
 
-    public Grid(double cellSize, Rectangle board) {
-        this.cellSize = cellSize;
+    public Grid(Rectangle board) {
         this.board = board;
         init();
     }
@@ -22,21 +21,21 @@ public class Grid implements Iterable<Position> {
     private void init() {
         mapOfCells = new HashMap<>();
 
-        double numberOfRows = (board.getHeight() / cellSize);
-        double numberOfCols = (board.getWidth() / cellSize);
+        double numberOfRows = (board.getHeight() / Constants.CELL_SIZE);
+        double numberOfCols = (board.getWidth() / Constants.CELL_SIZE);
         long start = System.currentTimeMillis();
         System.out.println("GRID init: Creating cells");
 
         //Add first cell
         Position firstCellPos = new Position(board.getX(), board.getY());
-        mapOfCells.put(firstCellPos, new Cell(firstCellPos, cellSize));
+        mapOfCells.put(firstCellPos, new Cell(firstCellPos));
 
         //Populate map with the rest of the cells
         for (int i = 0; i < numberOfRows; i++) {
 
             for (int j = 0; j < numberOfCols; j++) {
-                Position newCellPos = new Position((board.getX() + j * cellSize), (board.getY() + i * cellSize));
-                Cell newCell = new Cell(newCellPos, cellSize);
+                Position newCellPos = new Position((board.getX() + j * Constants.CELL_SIZE), (board.getY() + i * Constants.CELL_SIZE));
+                Cell newCell = new Cell(newCellPos);
                 mapOfCells.put(newCellPos, newCell);
                 newCell.initCell();
             }
@@ -65,10 +64,6 @@ public class Grid implements Iterable<Position> {
 
     public HashMap<Position, Cell> getMapOfCells() {
         return mapOfCells;
-    }
-
-    public double getCellSize() {
-        return cellSize;
     }
 
     public Rectangle getBoard() {

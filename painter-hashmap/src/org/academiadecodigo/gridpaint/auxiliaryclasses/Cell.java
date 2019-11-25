@@ -1,5 +1,6 @@
 package org.academiadecodigo.gridpaint.auxiliaryclasses;
 
+import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -9,9 +10,8 @@ public class Cell {
     private Rectangle cellShape;
     private boolean painted;
 
-    public Cell(Position position, double size) {
-
-        cellShape = new Rectangle(position.getX(), position.getY(), size, size);
+    public Cell(Position position) {
+        cellShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);
     }
 
     public void initCell() {

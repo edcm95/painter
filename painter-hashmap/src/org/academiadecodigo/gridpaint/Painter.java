@@ -5,42 +5,36 @@ import org.academiadecodigo.gridpaint.auxiliaryclasses.PainterKeyboard;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Position;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Saver;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.algorithms.AlgorithmName;
+import org.academiadecodigo.gridpaint.auxiliaryclasses.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Painter {
 
-    private static final double BORDER = 10;
     private static Saver saver;
-    private double cellSize;
-    private double width;
-    private double height;
     private int slot;
     private int algorithmIndex;
     private Grid grid;
     private Pointer pointer;
     private MessageHandler messageHandler;
 
-    public Painter(double cellSize, double width, double height) {
-        this.cellSize = cellSize;
+    public Painter() {
         this.slot = 0;
         this.algorithmIndex = 0;
-        this.width = width;
-        this.height = height;
         init();
     }
 
     private void init() {
         //Primary instance
-        Rectangle table = new Rectangle(BORDER, BORDER, width, height);
+        Rectangle board = new Rectangle(Constants.BORDER, Constants.BORDER, Constants.WIDTH, Constants.HEIGHT);
 
-        messageHandler = new MessageHandler(table, this);
+        messageHandler = new MessageHandler(board, this);
 
         //Primary draw
-        table.draw();
+        board.draw();
 
         //Final instance
-        grid = new Grid(cellSize, table);
-        Position newPointerPosition = new Position(table.getX(), table.getY());
+        grid = new Grid(board);
+        Position newPointerPosition = new Position(board.getX(), board.getY());
         pointer = new Pointer(newPointerPosition, grid);
         saver = new Saver();
 
