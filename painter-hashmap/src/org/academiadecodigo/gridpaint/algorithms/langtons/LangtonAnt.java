@@ -1,5 +1,6 @@
-package org.academiadecodigo.gridpaint.algorithms;
+package org.academiadecodigo.gridpaint.algorithms.langtons;
 
+import org.academiadecodigo.gridpaint.algorithms.Algorithm;
 import org.academiadecodigo.gridpaint.entities.Grid;
 import org.academiadecodigo.gridpaint.entities.Cell;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.Direction;
@@ -42,8 +43,8 @@ public class LangtonAnt implements Algorithm {
         System.out.println("Langton's ant got tired. It ran " + steps + " steps.");
     }
 
-    private void processCell(Cell currentCell) {
-        if (currentCell.isPainted()) {
+    protected void processCell(Cell currentCell) {
+        if(currentCell.isPainted()){
             currentCell.erase();
             updateDirectionAntiClockwise();
             return;
@@ -54,7 +55,9 @@ public class LangtonAnt implements Algorithm {
         updateDirectionClockwise();
     }
 
-    private void updateDirectionClockwise() {
+
+
+    protected void updateDirectionClockwise() {
         switch (direction) {
             case UP:
                 direction = Direction.RIGHT;
@@ -71,7 +74,7 @@ public class LangtonAnt implements Algorithm {
         }
     }
 
-    private void updateDirectionAntiClockwise() {
+    protected void updateDirectionAntiClockwise() {
         switch (direction) {
             case UP:
                 direction = Direction.LEFT;

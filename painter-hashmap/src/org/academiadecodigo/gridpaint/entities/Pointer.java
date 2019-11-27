@@ -1,9 +1,11 @@
 package org.academiadecodigo.gridpaint.entities;
 
+import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonExtended;
+import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonSquare;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.gridpaint.algorithms.*;
 import org.academiadecodigo.gridpaint.algorithms.searchers.fill.InitFill;
-import org.academiadecodigo.gridpaint.algorithms.LangtonAnt;
+import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonAnt;
 import org.academiadecodigo.gridpaint.algorithms.searchers.Maze;
 import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -85,6 +87,8 @@ public class Pointer {
         algorithmMap.put(AlgorithmName.FILL, InitFill.getFillInstance(grid, color, position));
         algorithmMap.put(AlgorithmName.MAZE, new Maze(grid, color, position));
         algorithmMap.put(AlgorithmName.LANGTON_ANT, new LangtonAnt(grid, color, position));
+        algorithmMap.put(AlgorithmName.LANGTON_SYMMETRICAL, new LangtonExtended(grid, color, position));
+        algorithmMap.put(AlgorithmName.LANGTON_SQUARE, new LangtonSquare(grid, color, position));
 
         threadPool.execute(algorithmMap.get(algorithmName));
         System.out.println("Threads active: " + Thread.activeCount());
