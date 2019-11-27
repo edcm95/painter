@@ -1,15 +1,14 @@
 package org.academiadecodigo.gridpaint.entities;
 
-import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonExtended;
-import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonSquare;
+import org.academiadecodigo.gridpaint.algorithms.langtons.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.gridpaint.algorithms.*;
 import org.academiadecodigo.gridpaint.algorithms.searchers.fill.InitFill;
-import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonAnt;
 import org.academiadecodigo.gridpaint.algorithms.searchers.Maze;
 import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +33,7 @@ public class Pointer {
     }
 
     public void move(Direction direction) {
-        if(availBoundaries(direction)){
+        if (availBoundaries(direction)) {
             return;
         }
 
@@ -43,8 +42,8 @@ public class Pointer {
         paintCell();
     }
 
-    private boolean availBoundaries(Direction direction){
-        return  (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + Constants.CELL_SIZE) ||
+    private boolean availBoundaries(Direction direction) {
+        return (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + Constants.CELL_SIZE) ||
                 (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - Constants.CELL_SIZE) ||
                 (direction == Direction.UP && position.getY() < grid.getBoard().getY() + Constants.CELL_SIZE) ||
                 (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - Constants.CELL_SIZE);
@@ -89,6 +88,9 @@ public class Pointer {
         algorithmMap.put(AlgorithmName.LANGTON_ANT, new LangtonAnt(grid, color, position));
         algorithmMap.put(AlgorithmName.LANGTON_SYMMETRICAL, new LangtonExtended(grid, color, position));
         algorithmMap.put(AlgorithmName.LANGTON_SQUARE, new LangtonSquare(grid, color, position));
+        algorithmMap.put(AlgorithmName.LANGTON_CHAOS, new LangtonChaos(grid, color, position));
+        algorithmMap.put(AlgorithmName.LANGTON_TRIANGLE, new LangtonTriangle(grid, color, position));
+        algorithmMap.put(AlgorithmName.LANGTON_CONVOLUTED, new LangtonConvoluted(grid, color, position));
 
         threadPool.execute(algorithmMap.get(algorithmName));
         System.out.println("Threads active: " + Thread.activeCount());

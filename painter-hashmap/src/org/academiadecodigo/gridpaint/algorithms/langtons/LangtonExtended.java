@@ -7,8 +7,12 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class LangtonExtended extends LangtonAnt {
 
+    protected Color[] colors;
+    protected boolean[] directions;
+
     public LangtonExtended(Grid grid, Color color, Position position) {
         super(grid, color, position);
+        init();
     }
 
     @Override
@@ -17,12 +21,10 @@ public class LangtonExtended extends LangtonAnt {
             return;
         }
 
-        if (ifCellIsThenSet(cell, Color.GREEN, Color.YELLOW, false)) {
-            return;
-        }
-
-        if (ifCellIsThenSet(cell, Color.YELLOW, Color.RED, true)) {
-            return;
+        for (int i = 1; i < directions.length - 1; i++) {
+            if (ifCellIsThenSet(cell, colors[i - 1], colors[i], directions[i])) {
+                return;
+            }
         }
 
         ifCellIsThenErase(cell, Color.RED, true);
@@ -67,5 +69,13 @@ public class LangtonExtended extends LangtonAnt {
         updateDirectionAntiClockwise();
     }
 
+    private void init() {
+        colors = new Color[]{
+                Color.GREEN,
+                Color.YELLOW,
+                Color.RED
+        };
 
+        directions = new boolean[]{false, false, true, true};
+    }
 }

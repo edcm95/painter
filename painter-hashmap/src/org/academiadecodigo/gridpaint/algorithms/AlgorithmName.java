@@ -5,8 +5,10 @@ public enum AlgorithmName {
     MAZE("Maze"),
     LANGTON_ANT("Langton's ant"),
     LANGTON_SYMMETRICAL("Langton's Ant LLRR"),
-    LANGTON_SQUARE("Langton's Ant LRRRRRLLR");
-
+    LANGTON_SQUARE("Langton's Ant LRRRRRLLR"),
+    LANGTON_CHAOS("Langton's Ant RLR"),
+    LANGTON_TRIANGLE("Langton's Ant RRLLLRLLLRRR"),
+    LANGTON_CONVOLUTED("Langton's Ant LLRRRLRLRLLR");
 
     private String name;
 

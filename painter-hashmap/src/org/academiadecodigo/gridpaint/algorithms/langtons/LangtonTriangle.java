@@ -5,9 +5,9 @@ import org.academiadecodigo.gridpaint.entities.Grid;
 import org.academiadecodigo.gridpaint.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public class LangtonSquare extends LangtonExtended {
+public class LangtonTriangle extends LangtonExtended {
 
-    public LangtonSquare(Grid grid, Color color, Position position) {
+    public LangtonTriangle(Grid grid, Color color, Position position) {
         super(grid, color, position);
         init();
     }
@@ -27,18 +27,22 @@ public class LangtonSquare extends LangtonExtended {
         ifCellIsThenErase(cell, colors[colors.length - 1], directions[directions.length - 1]);
     }
 
+
     private void init() {
         colors = new Color[]{
-                Color.YELLOW,
-                Color.WHITE,
                 Color.GREEN,
-                Color.LIGHT_GRAY,
-                Color.PINK,
-                Color.CYAN,
-                Color.MAGENTA,
                 Color.ORANGE,
+                Color.WHITE,
+                Color.YELLOW,
+                Color.PINK,
+                Color.RED,
+                Color.MAGENTA,
+                Color.CYAN,
+                Color.BLACK,
+                Color.DARK_GRAY,
+                Color.LIGHT_GRAY
         };
 
-        directions = new boolean[]{true, false, false, false, false, false, true, true, false};
+        directions = new boolean[]{true, true, false, false, false, true, false, false, false, true, true, true};
     }
 }
