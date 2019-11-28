@@ -1,6 +1,7 @@
 package org.academiadecodigo.gridpaint.entities;
 
 import org.academiadecodigo.gridpaint.algorithms.langtons.*;
+import org.academiadecodigo.gridpaint.algorithms.langtons.extended.*;
 import org.academiadecodigo.gridpaint.auxiliaryclasses.*;
 import org.academiadecodigo.gridpaint.algorithms.*;
 import org.academiadecodigo.gridpaint.algorithms.searchers.fill.InitFill;

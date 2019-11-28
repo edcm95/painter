@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint.algorithms.langtons;
+package org.academiadecodigo.gridpaint.algorithms.langtons.extended;
 
 import org.academiadecodigo.gridpaint.entities.Cell;
 import org.academiadecodigo.gridpaint.entities.Grid;
@@ -12,15 +12,6 @@ public class LangtonChaos extends LangtonExtended {
         init();
     }
 
-    public void init() {
-        colors = new Color[]{
-                Color.PINK,
-                Color.GREEN
-        };
-
-        directions = new boolean[]{true, false, true};
-    }
-
     @Override
     public void processCell(Cell cell) {
         if (ifCellIsThenSet(cell, Color.PINK, true)) {
@@ -28,12 +19,20 @@ public class LangtonChaos extends LangtonExtended {
         }
         // I know... xD
         for (int i = 1; i < directions.length - 1; i++) {
-            if (ifCellIsThenSet(cell, colors[i - 1], colors[i], directions[i])){
+            if (ifCellIsThenSet(cell, colors[i - 1], colors[i], directions[i])) {
                 return;
             }
         }
 
         ifCellIsThenErase(cell, Color.GREEN, true);
+    }
 
+    private void init() {
+        colors = new Color[]{
+                Color.PINK,
+                Color.GREEN
+        };
+
+        directions = new boolean[]{true, false, true};
     }
 }

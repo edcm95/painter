@@ -1,13 +1,13 @@
-package org.academiadecodigo.gridpaint.algorithms.langtons;
+package org.academiadecodigo.gridpaint.algorithms.langtons.extended;
 
 import org.academiadecodigo.gridpaint.entities.Cell;
 import org.academiadecodigo.gridpaint.entities.Grid;
 import org.academiadecodigo.gridpaint.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public class LangtonConvoluted extends LangtonExtended {
+public class LangtonTriangle extends LangtonExtended {
 
-    public LangtonConvoluted(Grid grid, Color color, Position position) {
+    public LangtonTriangle(Grid grid, Color color, Position position) {
         super(grid, color, position);
         init();
     }
@@ -27,6 +27,7 @@ public class LangtonConvoluted extends LangtonExtended {
         ifCellIsThenErase(cell, colors[colors.length - 1], directions[directions.length - 1]);
     }
 
+
     private void init() {
         colors = new Color[]{
                 Color.GREEN,
@@ -42,6 +43,6 @@ public class LangtonConvoluted extends LangtonExtended {
                 Color.LIGHT_GRAY
         };
 
-        directions = new boolean[]{false, false, true, true, true, false, true, false, true, false, false, true};
+        directions = new boolean[]{true, true, false, false, false, true, false, false, false, true, true, true};
     }
 }

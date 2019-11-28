@@ -1,5 +1,6 @@
-package org.academiadecodigo.gridpaint.algorithms.langtons;
+package org.academiadecodigo.gridpaint.algorithms.langtons.extended;
 
+import org.academiadecodigo.gridpaint.algorithms.langtons.LangtonAnt;
 import org.academiadecodigo.gridpaint.entities.Cell;
 import org.academiadecodigo.gridpaint.entities.Grid;
 import org.academiadecodigo.gridpaint.entities.Position;

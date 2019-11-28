@@ -1,4 +1,4 @@
-package org.academiadecodigo.gridpaint.algorithms.langtons;
+package org.academiadecodigo.gridpaint.algorithms.langtons.extended;
 
 import org.academiadecodigo.gridpaint.entities.Cell;
 import org.academiadecodigo.gridpaint.entities.Grid;

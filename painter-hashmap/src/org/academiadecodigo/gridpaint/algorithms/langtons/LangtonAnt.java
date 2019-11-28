@@ -55,8 +55,6 @@ public class LangtonAnt implements Algorithm {
         updateDirectionClockwise();
     }
 
-
-
     protected void updateDirectionClockwise() {
         switch (direction) {
             case UP:
