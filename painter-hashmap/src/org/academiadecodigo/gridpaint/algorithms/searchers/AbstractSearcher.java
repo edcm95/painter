@@ -22,26 +22,26 @@ public abstract class AbstractSearcher {
         this.position = position;
     }
 
-    protected void processNeighbouringCells(Position current, Cell tempCell, LinkedList<Position> positionStack) {
+    protected void processNeighbouringCells(Position current, Cell tempCell, LinkedList<Position> positionContainer) {
         Position toRight = new Position(current);
         toRight.translate(Direction.RIGHT);
         tempCell = grid.getCellInPosition(toRight);
-        checkCellAndAddToContainer(tempCell, toRight, positionStack);
+        checkCellAndAddToContainer(tempCell, toRight, positionContainer);
 
         Position toUp = new Position(current);
         toUp.translate(Direction.UP);
         tempCell = grid.getCellInPosition(toUp);
-        checkCellAndAddToContainer(tempCell, toUp, positionStack);
+        checkCellAndAddToContainer(tempCell, toUp, positionContainer);
 
         Position toDown = new Position(current);
         toDown.translate(Direction.DOWN);
         tempCell = grid.getCellInPosition(toDown);
-        checkCellAndAddToContainer(tempCell, toDown, positionStack);
+        checkCellAndAddToContainer(tempCell, toDown, positionContainer);
 
         Position toLeft = new Position(current);
         toLeft.translate(Direction.LEFT);
         tempCell = grid.getCellInPosition(toLeft);
-        checkCellAndAddToContainer(tempCell, toLeft, positionStack);
+        checkCellAndAddToContainer(tempCell, toLeft, positionContainer);
     }
 
     protected abstract void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> list);

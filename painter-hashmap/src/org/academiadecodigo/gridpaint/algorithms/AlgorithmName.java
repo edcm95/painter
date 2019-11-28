@@ -8,7 +8,8 @@ public enum AlgorithmName {
     LANGTON_SQUARE("Langton's Ant LRRRRRLLR"),
     LANGTON_CHAOS("Langton's Ant RLR"),
     LANGTON_TRIANGLE("Langton's Ant RRLLLRLLLRRR"),
-    LANGTON_CONVOLUTED("Langton's Ant LLRRRLRLRLLR");
+    LANGTON_CONVOLUTED("Langton's Ant LLRRRLRLRLLR"),
+    GAME_OF_LIFE("Conway's Game Of Life");
 
     private String name;
 

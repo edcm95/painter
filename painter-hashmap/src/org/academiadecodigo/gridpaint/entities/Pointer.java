@@ -92,6 +92,7 @@ public class Pointer {
         algorithmMap.put(AlgorithmName.LANGTON_CHAOS, new LangtonChaos(grid, color, position));
         algorithmMap.put(AlgorithmName.LANGTON_TRIANGLE, new LangtonTriangle(grid, color, position));
         algorithmMap.put(AlgorithmName.LANGTON_CONVOLUTED, new LangtonConvoluted(grid, color, position));
+        algorithmMap.put(AlgorithmName.GAME_OF_LIFE, new GameOfLife(grid, color, position));
 
         threadPool.execute(algorithmMap.get(algorithmName));
         System.out.println("Threads active: " + Thread.activeCount());
