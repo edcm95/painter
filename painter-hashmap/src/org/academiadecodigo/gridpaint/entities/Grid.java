@@ -35,8 +35,11 @@ public class Grid implements Iterable<Position> {
                 Position newCellPos = new Position((board.getX() + j * Constants.CELL_SIZE), (board.getY() + i * Constants.CELL_SIZE));
                 Cell newCell = new Cell(newCellPos);
                 mapOfCells.put(newCellPos, newCell);
-                newCell.initCell();
             }
+        }
+
+        for (Cell cell : mapOfCells.values()) {
+            cell.initCell();
         }
 
         long elapsedTime = (System.currentTimeMillis() - start);

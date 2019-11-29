@@ -7,12 +7,14 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Cell {
 
+    private final Rectangle cellShape;
+    private final Position position;
     private Color color;
-    private Rectangle cellShape;
     private boolean painted;
 
     public Cell(Position position) {
-        cellShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);
+        this.position = position;
+        this.cellShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);
     }
 
     public void initCell() {
@@ -82,5 +84,9 @@ public class Cell {
 
     public boolean isPainted() {
         return painted;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }
