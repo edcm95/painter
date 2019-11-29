@@ -2,7 +2,6 @@ package org.academiadecodigo.gridpaint.entities;
 
 import org.academiadecodigo.gridpaint.config.Constants;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
 import java.util.HashMap;
 import java.util.Iterator;
 
