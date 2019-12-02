@@ -37,15 +37,16 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
             cellAlive = true;
         }
         int iterations = 0;
+        Map<Cell, Boolean> mapOfActions = new HashMap<>();
 
         while (cellAlive) {
             cellAlive = false;
             iterations++;
 
-
+            // read cell and map events
             for (Cell cell : cells) {
 
-                availCell(cell);
+                availCell(cell, mapOfActions);
 
 
                 if (cell.isPainted()) {
@@ -53,27 +54,49 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
                 }
             }
 
+            // execute events in atomic manner
+            for (Cell cell : mapOfActions.keySet()) {
+                executeCell(cell, mapOfActions);
+            }
+
+            // clear actions
+            mapOfActions.clear();
+
         }
 
         System.out.println(iterations);
 
     }
 
-    private void availCell(Cell cell) {
+    private void availCell(Cell cell, Map<Cell, Boolean> mapOfactions) {
         if (cell.isPainted() && countAliveNeighbours(cell) < 2) {
-            cell.erase();
+            mapOfactions.put(cell, false);
             return;
         }
 
         if (cell.isPainted() && countAliveNeighbours(cell) > 3) {
-            cell.erase();
+            mapOfactions.put(cell, false);
             return;
         }
 
         if (!cell.isPainted() && countAliveNeighbours(cell) == 3) {
+            mapOfactions.put(cell, null);
+        }
+        mapOfactions.put(cell, null);
+    }
+
+    private void executeCell(Cell cell, Map<Cell, Boolean> mapOfActions) {
+        if (mapOfActions.get(cell) == null) {
+            return;
+        }
+
+        if (mapOfActions.get(cell)) {
             cell.setColor(color);
             cell.draw();
+            return;
         }
+
+        cell.erase();
     }
 
     private int countAliveNeighbours(Cell cell) {
@@ -157,12 +180,14 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
 
     private void populateCells() {
         LinkedList<Position> queue = new LinkedList<>();
+
         queue.add(position);
+        System.out.println("Populating Game Of Life Grid");
 
         while (!queue.isEmpty()) {
 
             //get cell
-            Position current = queue.pop();
+            Position current = queue.poll();
             Cell tempCell = grid.getCellInPosition(current);
 
             //is cell valid for process?
@@ -179,9 +204,11 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
     }
 
     private void cleanSelection() {
-        for (Cell cell : cells) {
+        // erase root (was polled from queue and never added again)
+        grid.getCellInPosition(position).erase();
 
-            if (cell.isPainted() && cell.getColor() == color || cell.isPainted() && cell.getColor() == Color.BLACK) {
+        for (Cell cell : cells) {
+            if (cell.isPainted() && cell.getColor() == color) {
                 continue;
             }
 
@@ -190,8 +217,12 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
     }
 
     private boolean isCellValidToProcess(Cell cell) {
-        if (cell.isPainted() && cell.getColor() != Color.GREEN || cell.isPainted() && cell.getColor() != color) {
+        if (cell.isPainted() && cell.getColor() == Color.GREEN) {
             return false;
+        }
+
+        if (cell.isPainted() && cell.getColor() == color) {
+            return true;
         }
 
         cell.setColor(Color.GREEN);
@@ -200,16 +231,24 @@ public class GameOfLife extends AbstractSearcher implements Algorithm {
     }
 
     @Override
-    protected void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> queue) {
-        if (tempCell == null) {
+    protected void checkCellAndAddToContainer(Cell nextCell, Position position, LinkedList<Position> queue) {
+        if (nextCell == null) {
             return;
         }
 
-        if (tempCell.isPainted() && tempCell.getColor() != color && tempCell.getColor() != Color.GREEN) {
+        if (nextCell.isPainted() && (nextCell.getColor() == Color.BLACK && nextCell.getColor() == Color.GREEN)) {
             return;
         }
 
-        cells.add(tempCell);
-        queue.offer(position);
+        if (nextCell.isPainted() && nextCell.getColor() == color) {
+            if (!cells.contains(nextCell)) {
+                cells.add(nextCell);
+            }
+        }
+
+        if (!nextCell.isPainted()) {
+            cells.add(nextCell);
+            queue.offer(position);
+        }
     }
 }
