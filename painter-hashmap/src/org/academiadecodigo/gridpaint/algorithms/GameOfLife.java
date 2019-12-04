@@ -15,6 +15,7 @@ public class GameOfLife implements Algorithm {
     private final Grid grid;
     private Map<Cell, Cell[]> mapOfNeighbours;
     private Map<Cell, Boolean> events;
+    private long timeStamp;
 
     public GameOfLife(Grid grid, Color color) {
         this.color = color;
@@ -32,7 +33,7 @@ public class GameOfLife implements Algorithm {
 
         boolean cellAlive = true;
         while (cellAlive) {
-            long timeStamp = System.currentTimeMillis();
+            timeStamp = System.currentTimeMillis();
 
             cellAlive = false;
             iterations++;
@@ -55,15 +56,10 @@ public class GameOfLife implements Algorithm {
             // clear events
             events.clear();
 
-            try {
-                Thread.sleep(250 - (System.currentTimeMillis() - timeStamp));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep();
         }
 
-        System.out.println(iterations);
-
+        System.out.println("Life ran for " + iterations + " generations.");
     }
 
     private void availCell(Cell cell, Map<Cell, Boolean> mapOfactions) {
@@ -88,7 +84,6 @@ public class GameOfLife implements Algorithm {
         }
 
         if (mapOfActions.get(cell)) {
-            System.out.println("Cell came alive.");
             cell.setColor(color);
             cell.draw();
             return;
@@ -118,6 +113,20 @@ public class GameOfLife implements Algorithm {
     private void mapNeighbours() {
         for (Cell cell : grid.getMapOfCells().values()) {
             mapOfNeighbours.put(cell, getNeighbours(cell));
+        }
+    }
+
+    private void sleep() {
+        long sleepTime = 100 - (System.currentTimeMillis() - timeStamp);
+
+        if(sleepTime < 0){
+            return;
+        }
+
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
