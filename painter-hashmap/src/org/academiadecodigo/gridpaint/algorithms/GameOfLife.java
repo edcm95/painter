@@ -33,7 +33,7 @@ public class GameOfLife implements Algorithm {
         boolean cellAlive = true;
         while (cellAlive) {
             long timeStamp = System.currentTimeMillis();
-            
+
             cellAlive = false;
             iterations++;
 
