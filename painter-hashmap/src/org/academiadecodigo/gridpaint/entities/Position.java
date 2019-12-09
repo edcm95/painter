@@ -16,6 +16,10 @@ public class Position {
         this.Y = Y;
     }
 
+    /**
+     * @param position Constructor overload, allows for
+     *                 position instanciation based on a previous instance
+     */
     public Position(Position position) {
         this.X = position.getX();
         this.Y = position.getY();
@@ -30,12 +34,10 @@ public class Position {
         return Y;
     }
 
-    public void translate(double deltaX, double deltaY) {
-        this.X = X + deltaX;
-        this.Y = Y + deltaY;
-    }
-
-    public void translate(Direction direction){
+    /**
+     * Translates the position (moves it based on a direction)
+     */
+    public void translate(Direction direction) {
         this.X = X + (Constants.CELL_SIZE * direction.getDeltaX());
         this.Y = Y + (Constants.CELL_SIZE * direction.getDeltaY());
     }
@@ -45,7 +47,10 @@ public class Position {
         this.Y = Y;
     }
 
-    public Position getOrigin(){
+    /**
+     * @return the origin
+     */
+    public Position getOrigin() {
         return origin;
     }
 

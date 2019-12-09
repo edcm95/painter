@@ -33,12 +33,16 @@ public class Pointer {
         this.color = Color.CYAN;
     }
 
+    /**
+     * @param direction defines the movement direction
+     *                  Moves the pointer
+     */
     public void move(Direction direction) {
         if (availBoundaries(direction)) {
             return;
         }
 
-        position.translate(direction.getDeltaX() * Constants.CELL_SIZE, direction.getDeltaY() * Constants.CELL_SIZE);
+        position.translate(direction);
         pointerShape.translate(direction.getDeltaX() * Constants.CELL_SIZE, direction.getDeltaY() * Constants.CELL_SIZE);
         paintCell();
     }

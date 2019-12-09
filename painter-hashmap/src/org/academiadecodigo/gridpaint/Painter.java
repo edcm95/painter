@@ -25,6 +25,11 @@ public class Painter {
         init();
     }
 
+    /**
+     * Initializes some properties, extends contructor's logic
+     * Also draws the board(main app shape) and the pointer (entity that moves and allows
+     * cell selection and interaction)
+     */
     private void init() {
         //Primary instance
         Rectangle board = new Rectangle(Constants.BORDER, Constants.BORDER, Constants.WIDTH, Constants.HEIGHT);
@@ -44,20 +49,32 @@ public class Painter {
         pointer.draw();
     }
 
+    /**
+     * Initializes player input
+     */
     public void start() {
         PainterKeyboard painterKeyboard = new PainterKeyboard(pointer, this);
         painterKeyboard.keyboardSetup();
     }
 
+    /**
+     * Erases all cells in the grid
+     */
     public void clearGrid() {
         grid.resetGrid();
     }
 
+    /**
+     * Syncs save slot in saver entity, and saves cell's state
+     */
     public void save() {
         saver.saveSlot(slot);
         saver.saveData(grid.getMapOfCells());
     }
 
+    /**
+     * Syncs save slot in saver entity, and loads cell's state
+     */
     public void load() {
         saver.saveSlot(slot);
         saver.loadData(grid.getMapOfCells());
@@ -67,10 +84,16 @@ public class Painter {
         return slot;
     }
 
+    /**
+     * @return the current algotithm enum object
+     */
     public AlgorithmName getCurrentAlgorithm() {
         return AlgorithmName.values()[algorithmIndex];
     }
 
+    /**
+     * Cycles the save slot
+     */
     public void cycleSaveSlot() {
         slot++;
         if (slot > 3) {
@@ -79,6 +102,9 @@ public class Painter {
         messageHandler.updateSaveSlot();
     }
 
+    /**
+     * Cycles the algorithm
+     */
     public void cycleAlgorithm() {
         algorithmIndex++;
 
