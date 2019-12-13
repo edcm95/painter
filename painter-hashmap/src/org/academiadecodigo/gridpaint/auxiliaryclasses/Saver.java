@@ -132,6 +132,9 @@ public class Saver {
     }
 
     public void saveSlot(int value) {
+        filepath = "save/save-file" + value;
+
+        /*
         switch (value) {
             case 3:
                 filepath = "save/save-file3";
@@ -146,5 +149,6 @@ public class Saver {
                 filepath = "save/save-file";
                 break;
         }
+        */
     }
 }

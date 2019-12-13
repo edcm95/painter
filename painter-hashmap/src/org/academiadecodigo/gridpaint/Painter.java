@@ -96,7 +96,7 @@ public class Painter {
      */
     public void cycleSaveSlot() {
         slot++;
-        if (slot > 3) {
+        if (slot > 10) {
             slot = 0;
         }
         messageHandler.updateSaveSlot();
