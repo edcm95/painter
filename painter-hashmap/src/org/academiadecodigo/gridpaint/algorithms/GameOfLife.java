@@ -24,6 +24,9 @@ public class GameOfLife implements Algorithm {
         this.mapOfNeighbours = new HashMap<>();
     }
 
+    /**
+     * Main loop
+     */
     @Override
     public void run() {
         // map each cell's neighbouring cells
@@ -62,22 +65,33 @@ public class GameOfLife implements Algorithm {
         System.out.println("Life ran for " + iterations + " generations.");
     }
 
-    private void availCell(Cell cell, Map<Cell, Boolean> mapOfactions) {
+    /**
+     * @param cell
+     * @param mapOfActions
+     * For a given cell computes alive neighbours {@link #countAliveNeighbours(Cell)}
+     * and registers the corresponding action on {@param mapOfActions}
+     */
+    private void availCell(Cell cell, Map<Cell, Boolean> mapOfActions) {
         if (cell.isPainted() && countAliveNeighbours(cell) < 2) {
-            mapOfactions.put(cell, false);
+            mapOfActions.put(cell, false);
             return;
         }
 
         if (cell.isPainted() && countAliveNeighbours(cell) > 3) {
-            mapOfactions.put(cell, false);
+            mapOfActions.put(cell, false);
             return;
         }
 
         if (!cell.isPainted() && countAliveNeighbours(cell) == 3) {
-            mapOfactions.put(cell, true);
+            mapOfActions.put(cell, true);
         }
     }
 
+    /**
+     * @param cell
+     * @param mapOfActions
+     * For all cells executes the corresponding action mapped by {@link #availCell(Cell, Map)}
+     */
     private void executeCell(Cell cell, Map<Cell, Boolean> mapOfActions) {
         if (mapOfActions.get(cell) == null) {
             return;
@@ -92,6 +106,10 @@ public class GameOfLife implements Algorithm {
         cell.erase();
     }
 
+    /**
+     * @param cell
+     * @return how many neighbouring cells are alive (int)
+     */
     private int countAliveNeighbours(Cell cell) {
         Cell[] neighbours = mapOfNeighbours.get(cell);
 
@@ -110,12 +128,19 @@ public class GameOfLife implements Algorithm {
     }
 
 
+    /**
+     * For each cell in the Game Of Life, invokes {@link #getNeighbours(Cell)}
+     */
     private void mapNeighbours() {
         for (Cell cell : grid.getMapOfCells().values()) {
             mapOfNeighbours.put(cell, getNeighbours(cell));
         }
     }
 
+    /**
+     * Calculates how much time the cycle processing took and computes
+     * the desired waiting time
+     */
     private void sleep() {
         long sleepTime = 100 - (System.currentTimeMillis() - timeStamp);
 
@@ -132,31 +157,26 @@ public class GameOfLife implements Algorithm {
 
     /**
      * @param cell
-     * @return the number of neighbours currently alive;
+     * @return an array with all the cell's neighbours
      */
     private Cell[] getNeighbours(Cell cell) {
         Cell[] neighbours = new Cell[8];
 
-        //get left neighbour
         Position left = new Position(cell.getPosition());
         left.translate(Direction.LEFT);
         neighbours[0] = grid.getCellInPosition(left);
 
-        //ger right neighbour
         Position right = new Position(cell.getPosition());
         right.translate(Direction.RIGHT);
         neighbours[1] = grid.getCellInPosition(right);
 
-        //get upper
         Position up = new Position(cell.getPosition());
         up.translate(Direction.UP);
         neighbours[2] = grid.getCellInPosition(up);
 
-        //get lower
         Position down = new Position(cell.getPosition());
         down.translate(Direction.DOWN);
         neighbours[3] = grid.getCellInPosition(down);
-
 
         Position upperLeft = new Position(cell.getPosition());
         upperLeft.translate(Direction.UP);
