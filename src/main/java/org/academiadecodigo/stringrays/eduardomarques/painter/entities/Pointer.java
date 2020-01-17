@@ -3,6 +3,7 @@ package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
+import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmFactory;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.GameOfLife;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.LangtonAnt;
@@ -88,19 +89,14 @@ public class Pointer {
     }
 
     public void runAlgorithm(AlgorithmName algorithmName) {
-        HashMap<AlgorithmName, Algorithm> algorithmMap = new HashMap<>();
+        Algorithm algorithm = AlgorithmFactory.getInstanceOf(algorithmName, grid, color, position);
 
-        algorithmMap.put(AlgorithmName.FILL, InitFill.getFillInstance(grid, color, position));
-        algorithmMap.put(AlgorithmName.MAZE, new Maze(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_ANT, new LangtonAnt(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_SYMMETRICAL, new LangtonExtended(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_SQUARE, new LangtonSquare(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_CHAOS, new LangtonChaos(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_TRIANGLE, new LangtonTriangle(grid, color, position));
-        algorithmMap.put(AlgorithmName.LANGTON_CONVOLUTED, new LangtonConvoluted(grid, color, position));
-        algorithmMap.put(AlgorithmName.GAME_OF_LIFE, new GameOfLife(grid, color));
+        if (algorithm == null) {
+            System.out.println("Internal error: Algorithm not found.");
+            return;
+        }
 
-        threadPool.execute(algorithmMap.get(algorithmName));
+        threadPool.execute(algorithm);
         System.out.println("Threads active: " + Thread.activeCount());
     }
 

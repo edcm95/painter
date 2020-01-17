@@ -6,7 +6,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public class LangtonExtended extends LangtonAnt {
+public abstract class LangtonExtended extends LangtonAnt {
 
     protected Color[] colors;
     protected boolean[] directions;
@@ -69,13 +69,5 @@ public class LangtonExtended extends LangtonAnt {
         updateDirectionAntiClockwise();
     }
 
-    protected void init() {
-        colors = new Color[]{
-                Color.GREEN,
-                Color.YELLOW,
-                Color.RED
-        };
-
-        directions = new boolean[]{false, false, true, true};
-    }
+    protected abstract void init();
 }
