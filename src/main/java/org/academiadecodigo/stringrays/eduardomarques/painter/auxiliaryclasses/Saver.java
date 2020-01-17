@@ -1,7 +1,5 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
@@ -9,6 +7,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Saver {
@@ -23,6 +22,8 @@ public class Saver {
 
     public void saveData(HashMap<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
+
+        /*
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -34,12 +35,12 @@ public class Saver {
         } finally {
             System.out.println("Saving process finished, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
         }
+        */
 
-        /*
         initOutput();
 
         try {
-            for(Position position : map.keySet()) {
+            for (Position position : map.keySet()) {
                 outputStream.write(decomposeCell(map.get(position)));
             }
 
@@ -49,15 +50,19 @@ public class Saver {
         } finally {
             closeStreams();
         }
-        System.out.println("SAVER: Finished saving to file.");
-         */
+
+        System.out.println("SAVER: Finished saving to file, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
     }
 
-    public void loadData(Grid grid) {
+    public void loadData(Map<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
+
+        /*
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<Position, Cell> fetched = null;
-        TypeReference<HashMap<Position, Cell>> typeReference = new TypeReference<HashMap<Position, Cell>>() {};
+
+        TypeReference<HashMap<Position, Cell>> typeReference = new TypeReference<HashMap<Position, Cell>>() {
+        };
 
         try {
             fetched = objectMapper.readValue(new File(filepath), typeReference);
@@ -69,11 +74,9 @@ public class Saver {
         } finally {
             System.out.println("Loading process finished, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
         }
+         */
 
-
-        /*
         initInput();
-
         try {
             for (Position position : map.keySet()) {
                 byte[] bytes = inputStream.readNBytes(2);
@@ -84,9 +87,9 @@ public class Saver {
             System.out.println("SAVER: Something went wrong loading the data.");
 
         } finally {
+            System.out.println("Operation took: " + (System.currentTimeMillis() - timeStamp));
             closeStreams();
         }
-        */
     }
 
     private byte[] decomposeCell(Cell cell) {

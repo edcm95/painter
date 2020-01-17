@@ -18,7 +18,7 @@ public class LangtonExtended extends LangtonAnt {
 
     @Override
     protected void processCell(Cell cell) {
-        if (ifCellIsThenSet(cell, Color.GREEN, false)) {
+        if (ifCellIsThenSet(cell, colors[0], directions[0])) {
             return;
         }
 
@@ -28,8 +28,7 @@ public class LangtonExtended extends LangtonAnt {
             }
         }
 
-        ifCellIsThenErase(cell, Color.RED, true);
-
+        ifCellIsThenErase(cell, colors[colors.length - 1], directions[directions.length - 1]);
     }
 
     protected boolean ifCellIsThenErase(Cell cell, Color is, boolean clockWise) {
@@ -70,7 +69,7 @@ public class LangtonExtended extends LangtonAnt {
         updateDirectionAntiClockwise();
     }
 
-    private void init() {
+    protected void init() {
         colors = new Color[]{
                 Color.GREEN,
                 Color.YELLOW,

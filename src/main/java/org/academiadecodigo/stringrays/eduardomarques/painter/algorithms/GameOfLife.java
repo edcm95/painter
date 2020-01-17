@@ -44,7 +44,7 @@ public class GameOfLife implements Algorithm {
             // read cell and map events
             for (Cell cell : grid.getMapOfCells().values()) {
 
-                availCell(cell, events);
+                availCell(cell);
 
                 if (cell.isPainted()) {
                     cellAlive = true;
@@ -53,7 +53,7 @@ public class GameOfLife implements Algorithm {
 
             // execute iteration events
             for (Cell cell : events.keySet()) {
-                executeCell(cell, events);
+                executeCell(cell);
             }
 
             // clear events
@@ -67,37 +67,35 @@ public class GameOfLife implements Algorithm {
 
     /**
      * @param cell
-     * @param mapOfActions
      * For a given cell computes alive neighbours {@link #countAliveNeighbours(Cell)}
      * and registers the corresponding action on {@param mapOfActions}
      */
-    private void availCell(Cell cell, Map<Cell, Boolean> mapOfActions) {
+    private void availCell(Cell cell) {
         if (cell.isPainted() && countAliveNeighbours(cell) < 2) {
-            mapOfActions.put(cell, false);
+            events.put(cell, false);
             return;
         }
 
         if (cell.isPainted() && countAliveNeighbours(cell) > 3) {
-            mapOfActions.put(cell, false);
+            events.put(cell, false);
             return;
         }
 
         if (!cell.isPainted() && countAliveNeighbours(cell) == 3) {
-            mapOfActions.put(cell, true);
+            events.put(cell, true);
         }
     }
 
     /**
      * @param cell
-     * @param mapOfActions
-     * For all cells executes the corresponding action mapped by {@link #availCell(Cell, Map)}
+     * For all cells executes the corresponding action mapped by {@link #availCell(Cell)}
      */
-    private void executeCell(Cell cell, Map<Cell, Boolean> mapOfActions) {
-        if (mapOfActions.get(cell) == null) {
+    private void executeCell(Cell cell) {
+        if (events.get(cell) == null) {
             return;
         }
 
-        if (mapOfActions.get(cell)) {
+        if (events.get(cell)) {
             cell.setColor(color);
             cell.paint();
             return;
@@ -107,7 +105,7 @@ public class GameOfLife implements Algorithm {
     }
 
     /**
-     * @param cell
+     * @param cell in map
      * @return how many neighbouring cells are alive (int)
      */
     private int countAliveNeighbours(Cell cell) {
@@ -142,9 +140,9 @@ public class GameOfLife implements Algorithm {
      * the desired waiting time
      */
     private void sleep() {
-        long sleepTime = 100 - (System.currentTimeMillis() - timeStamp);
+        long sleepTime;
 
-        if(sleepTime < 0){
+        if ((sleepTime = 100 - (System.currentTimeMillis() - timeStamp)) < 0) {
             return;
         }
 
@@ -156,7 +154,7 @@ public class GameOfLife implements Algorithm {
     }
 
     /**
-     * @param cell
+     * @param cell cell in map
      * @return an array with all the cell's neighbours
      */
     private Cell[] getNeighbours(Cell cell) {

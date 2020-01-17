@@ -77,7 +77,7 @@ public class Painter {
      */
     public void load() {
         saver.saveSlot(slot);
-        saver.loadData(grid);
+        saver.loadData(grid.getMapOfCells());
     }
 
     public int getSaveSlot() {
