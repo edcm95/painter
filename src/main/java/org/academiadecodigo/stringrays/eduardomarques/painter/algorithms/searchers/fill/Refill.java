@@ -37,7 +37,7 @@ public class Refill extends AbstractSearcher implements Algorithm {
                 tempCell.paint();
             }
 
-            processNeighbouringCells(current, tempCell, positionStack);
+            processNeighbouringCells(current, positionStack);
         }
         System.out.println("POINTER: Operation took " + (System.currentTimeMillis() - start) + " ms.");
     }

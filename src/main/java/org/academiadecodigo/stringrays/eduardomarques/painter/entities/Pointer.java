@@ -5,15 +5,9 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmFactory;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
-import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.GameOfLife;
-import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.LangtonAnt;
-import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended.*;
-import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.Maze;
-import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.fill.InitFill;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
 
-import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -96,7 +90,8 @@ public class Pointer {
             return;
         }
 
-        threadPool.execute(algorithm);
+
+        threadPool.submit(algorithm);
         System.out.println("Threads active: " + Thread.activeCount());
     }
 

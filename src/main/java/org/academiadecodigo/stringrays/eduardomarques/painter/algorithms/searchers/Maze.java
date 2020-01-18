@@ -38,7 +38,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
                 continue;
             }
 
-            processNeighbouringCells(current, tempCell, queue);
+            processNeighbouringCells(current, queue);
         }
         System.out.println("POINTER: Operation took " + (System.currentTimeMillis() - start) + " ms.");
     }

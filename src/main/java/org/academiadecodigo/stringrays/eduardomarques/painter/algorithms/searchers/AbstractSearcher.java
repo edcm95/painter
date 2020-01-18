@@ -22,26 +22,22 @@ public abstract class AbstractSearcher {
         this.position = position;
     }
 
-    protected void processNeighbouringCells(Position current, Cell tempCell, LinkedList<Position> positionContainer) {
-        Position toRight = new Position(current);
-        toRight.translate(Direction.RIGHT);
-        tempCell = grid.getCellInPosition(toRight);
-        checkCellAndAddToContainer(tempCell, toRight, positionContainer);
-
-        Position toUp = new Position(current);
-        toUp.translate(Direction.UP);
-        tempCell = grid.getCellInPosition(toUp);
-        checkCellAndAddToContainer(tempCell, toUp, positionContainer);
+    protected void processNeighbouringCells(Position current, LinkedList<Position> positionContainer) {
+        Position toLeft = new Position(current);
+        toLeft.translate(Direction.LEFT);
+        checkCellAndAddToContainer(grid.getCellInPosition(toLeft), toLeft, positionContainer);
 
         Position toDown = new Position(current);
         toDown.translate(Direction.DOWN);
-        tempCell = grid.getCellInPosition(toDown);
-        checkCellAndAddToContainer(tempCell, toDown, positionContainer);
+        checkCellAndAddToContainer(grid.getCellInPosition(toDown), toDown, positionContainer);
 
-        Position toLeft = new Position(current);
-        toLeft.translate(Direction.LEFT);
-        tempCell = grid.getCellInPosition(toLeft);
-        checkCellAndAddToContainer(tempCell, toLeft, positionContainer);
+        Position toRight = new Position(current);
+        toRight.translate(Direction.RIGHT);
+        checkCellAndAddToContainer(grid.getCellInPosition(toRight), toRight, positionContainer);
+
+        Position toUp = new Position(current);
+        toUp.translate(Direction.UP);
+        checkCellAndAddToContainer(grid.getCellInPosition(toUp), toUp, positionContainer);
     }
 
     protected abstract void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> list);
