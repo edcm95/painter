@@ -21,7 +21,7 @@ public class Pointer {
     private ExecutorService threadPool;
 
     public Pointer(Position position, Grid grid) {
-        this.threadPool = Executors.newCachedThreadPool();
+        this.threadPool = Executors.newSingleThreadExecutor();
         this.grid = grid;
         this.position = position;
         this.pointerShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);

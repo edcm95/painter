@@ -47,10 +47,10 @@ public class Grid implements Iterable<Position> {
     }
 
     public void resetGrid() {
-
         for (Position position : this) {
             mapOfCells.get(position).erase();
         }
+
         System.out.println("GRID: Cells cleared.");
     }
 
@@ -65,18 +65,6 @@ public class Grid implements Iterable<Position> {
 
     public HashMap<Position, Cell> getMapOfCells() {
         return mapOfCells;
-    }
-
-    public void loadMap(HashMap<Position, Cell> map) {
-        if (map == null) {
-            return;
-        }
-
-        mapOfCells = map;
-
-        for (Cell cell : mapOfCells.values()) {
-            cell.draw();
-        }
     }
 
     public Rectangle getBoard() {
