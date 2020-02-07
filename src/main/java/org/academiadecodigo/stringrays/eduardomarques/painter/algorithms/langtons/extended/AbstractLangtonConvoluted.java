@@ -1,13 +1,12 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended;
 
-import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public class LangtonConvoluted extends LangtonExtended {
+public class AbstractLangtonConvoluted extends AbstractLangtonExtended {
 
-    public LangtonConvoluted(Grid grid, Color color, Position position) {
+    public AbstractLangtonConvoluted(Grid grid, Color color, Position position) {
         super(grid, color, position);
     }
 

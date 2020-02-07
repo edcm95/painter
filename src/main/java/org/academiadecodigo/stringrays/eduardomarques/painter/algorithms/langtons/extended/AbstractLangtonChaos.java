@@ -1,23 +1,22 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public class LangtonSymmetrical extends LangtonExtended {
+public class AbstractLangtonChaos extends AbstractLangtonExtended {
 
-    public LangtonSymmetrical(Grid grid, Color color, Position position) {
+    public AbstractLangtonChaos(Grid grid, Color color, Position position) {
         super(grid, color, position);
     }
 
     @Override
     protected void init() {
         colors = new Color[]{
-                Color.GREEN,
-                Color.YELLOW,
-                Color.RED
+                Color.PINK,
+                Color.GREEN
         };
 
-        directions = new boolean[]{false, false, true, true};
+        directions = new boolean[]{true, false, true};
     }
 }

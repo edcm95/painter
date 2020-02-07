@@ -4,11 +4,11 @@ public enum AlgorithmName {
     FILL("Fill"),
     MAZE("Maze"),
     LANGTON_ANT("Langton's Ant"),
-    LANGTON_SYMMETRICAL("Langton's Ant LLRR "),
-    LANGTON_SQUARE("Langton's Ant LRRRRRLLR"),
-    LANGTON_CHAOS("Langton's Ant RLR"),
-    LANGTON_TRIANGLE("Langton's Ant RRLLLRLLLRRR"),
-    LANGTON_CONVOLUTED("Langton's Ant LLRRRLRLRLLR"),
+    LANGTON_SYMMETRICAL("Langton's Ant Brain "),
+    LANGTON_SQUARE("Langton's Ant Square"),
+    LANGTON_CHAOS("Langton's Ant Chaos"),
+    LANGTON_TRIANGLE("Langton's Ant Spiderman"),
+    LANGTON_CONVOLUTED("Langton's Ant Convoluted"),
     GAME_OF_LIFE("Conway's Game of Life");
 
     private String name;

@@ -23,19 +23,19 @@ public class AlgorithmFactory {
                 return new LangtonAnt(grid, color, position);
 
             case LANGTON_CHAOS:
-                return new LangtonChaos(grid, color, position);
+                return new AbstractLangtonChaos(grid, color, position);
 
             case LANGTON_SQUARE:
-                return new LangtonSquare(grid, color, position);
+                return new AbstractLangtonSquare(grid, color, position);
 
             case LANGTON_TRIANGLE:
-                return new LangtonTriangle(grid, color, position);
+                return new AbstractLangtonTriangle(grid, color, position);
 
             case LANGTON_CONVOLUTED:
-                return new LangtonConvoluted(grid, color, position);
+                return new AbstractLangtonConvoluted(grid, color, position);
 
             case LANGTON_SYMMETRICAL:
-                return new LangtonSymmetrical(grid, color, position);
+                return new AbstractLangtonSymmetrical(grid, color, position);
 
             case GAME_OF_LIFE:
                 return new GameOfLife(grid, color);

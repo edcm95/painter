@@ -6,12 +6,12 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-public abstract class LangtonExtended extends LangtonAnt {
+public abstract class AbstractLangtonExtended extends LangtonAnt {
 
     protected Color[] colors;
     protected boolean[] directions;
 
-    public LangtonExtended(Grid grid, Color color, Position position) {
+    public AbstractLangtonExtended(Grid grid, Color color, Position position) {
         super(grid, color, position);
         init();
     }
