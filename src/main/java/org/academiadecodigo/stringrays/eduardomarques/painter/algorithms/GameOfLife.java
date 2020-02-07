@@ -57,11 +57,7 @@ public class GameOfLife implements Algorithm {
                 executeCell(cell);
             }
 
-            // clear events
-            events.clear();
-
-
-            //sleep();
+            sleep();
         }
 
         System.out.println("Life ran for " + iterations + " generations.");
@@ -73,14 +69,18 @@ public class GameOfLife implements Algorithm {
      *             and registers the corresponding action on {@param mapOfActions}
      */
     private void availCell(Cell cell) {
-        int aliveNeighbours = countAliveNeighbours(cell);
+        byte aliveNeighbours = countAliveNeighbours(cell);
+
+        if (aliveNeighbours == 2) {
+            events.remove(cell);
+            return;
+        }
 
         if (!cell.isPainted()) {
             if (aliveNeighbours == 3) {
                 events.put(cell, true);
                 cellAlive = true;
             }
-
             return;
         }
 
@@ -117,16 +117,12 @@ public class GameOfLife implements Algorithm {
      * @param cell in map
      * @return how many neighbouring cells are alive (int)
      */
-    private int countAliveNeighbours(Cell cell) {
+    private byte countAliveNeighbours(Cell cell) {
         Cell[] neighbours = mapOfNeighbours.get(cell);
 
-        int count = 0;
+        byte count = 0;
         for (Cell neighbour : neighbours) {
-            if (neighbour == null) {
-                continue;
-            }
-
-            if (neighbour.isPainted()) {
+            if (neighbour != null && neighbour.isPainted()) {
                 count++;
             }
         }
