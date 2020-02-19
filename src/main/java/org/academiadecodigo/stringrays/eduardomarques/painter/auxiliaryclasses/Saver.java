@@ -5,18 +5,17 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class Saver {
 
-    private FileOutputStream outputStream;
-    private FileInputStream inputStream;
-
     private BufferedOutputStream bOut;
     private BufferedInputStream bIn;
-
     private String filepath;
 
     public Saver() {
@@ -44,8 +43,8 @@ public class Saver {
         initOutput();
 
         try {
-            for (Position position : map.keySet()) {
-                bOut.write(decomposeCell(map.get(position)));
+            for (Cell cell : map.values()) {
+                bOut.write(decomposeCell(cell));
             }
             bOut.flush();
 
@@ -84,9 +83,9 @@ public class Saver {
         initInput();
 
         try {
-            for (Position position : map.keySet()) {
+            for (Cell cell : map.values()) {
                 byte[] bytes = bIn.readNBytes(2);
-                map.get(position).writeCell(bytes);
+                cell.writeCell(bytes);
             }
 
         } catch (IOException e) {
@@ -99,7 +98,6 @@ public class Saver {
     }
 
     private byte[] decomposeCell(Cell cell) {
-
         byte[] bytes = new byte[2];
 
         //---------IS PAINTED?
@@ -148,8 +146,7 @@ public class Saver {
 
     private void initOutput() {
         try {
-            outputStream = new FileOutputStream(filepath);
-            bOut = new BufferedOutputStream(outputStream);
+            bOut = new BufferedOutputStream(new FileOutputStream(filepath));
 
         } catch (IOException e) {
             System.out.println("Something went wrong opening output.");
@@ -158,8 +155,7 @@ public class Saver {
 
     private void initInput() {
         try {
-            inputStream = new FileInputStream(filepath);
-            bIn = new BufferedInputStream(inputStream);
+            bIn = new BufferedInputStream(new FileInputStream(filepath));
 
         } catch (IOException e) {
             System.out.println("SAVER: Something went wrong opening input.");
@@ -168,12 +164,12 @@ public class Saver {
 
     private void closeStreams() {
         try {
-            if (outputStream != null) {
-                outputStream.close();
+            if (bOut != null) {
+                bOut.close();
             }
 
-            if (inputStream != null) {
-                inputStream.close();
+            if (bIn != null) {
+                bIn.close();
             }
         } catch (IOException e) {
             System.out.println("SAVER: Some went wrong closing streams.");
