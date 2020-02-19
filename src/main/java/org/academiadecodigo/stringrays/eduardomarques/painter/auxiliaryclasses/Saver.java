@@ -1,7 +1,6 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
-import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
@@ -14,6 +13,10 @@ public class Saver {
 
     private FileOutputStream outputStream;
     private FileInputStream inputStream;
+
+    private BufferedOutputStream bOut;
+    private BufferedInputStream bIn;
+
     private String filepath;
 
     public Saver() {
@@ -22,8 +25,8 @@ public class Saver {
 
     public void saveData(HashMap<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
-
         /*
+
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -37,12 +40,14 @@ public class Saver {
         }
         */
 
+
         initOutput();
 
         try {
             for (Position position : map.keySet()) {
-                outputStream.write(decomposeCell(map.get(position)));
+                bOut.write(decomposeCell(map.get(position)));
             }
+            bOut.flush();
 
         } catch (IOException e) {
             System.out.println("SAVER: Something went wrong writing file.");
@@ -74,12 +79,13 @@ public class Saver {
         } finally {
             System.out.println("Loading process finished, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
         }
-         */
+        */
 
         initInput();
+
         try {
             for (Position position : map.keySet()) {
-                byte[] bytes = inputStream.readNBytes(2);
+                byte[] bytes = bIn.readNBytes(2);
                 map.get(position).writeCell(bytes);
             }
 
@@ -143,6 +149,7 @@ public class Saver {
     private void initOutput() {
         try {
             outputStream = new FileOutputStream(filepath);
+            bOut = new BufferedOutputStream(outputStream);
 
         } catch (IOException e) {
             System.out.println("Something went wrong opening output.");
@@ -152,6 +159,7 @@ public class Saver {
     private void initInput() {
         try {
             inputStream = new FileInputStream(filepath);
+            bIn = new BufferedInputStream(inputStream);
 
         } catch (IOException e) {
             System.out.println("SAVER: Something went wrong opening input.");
