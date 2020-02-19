@@ -1,5 +1,7 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.exceptions.CellColorException;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -51,6 +53,9 @@ public class Saver {
         } catch (IOException e) {
             System.out.println("SAVER: Something went wrong writing file.");
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
         } finally {
             closeStreams();
         }
@@ -84,12 +89,13 @@ public class Saver {
 
         try {
             for (Cell cell : map.values()) {
-                byte[] bytes = bIn.readNBytes(2);
-                cell.writeCell(bytes);
+                byte value = bIn.readNBytes(1)[0];
+                cell.writeCell(value);
             }
 
-        } catch (IOException e) {
-            System.out.println("SAVER: Something went wrong loading the data.");
+        } catch (IOException | CellColorException e) {
+            System.out.println("SAVER: Something went wrong loading the data. ");
+            System.out.println(e.getMessage());
 
         } finally {
             System.out.println("Operation took: " + (System.currentTimeMillis() - timeStamp));
@@ -97,51 +103,51 @@ public class Saver {
         }
     }
 
-    private byte[] decomposeCell(Cell cell) {
-        byte[] bytes = new byte[2];
+    private byte decomposeCell(Cell cell) throws Exception {
 
         //---------IS PAINTED?
-        if (cell.isPainted()) {
-            bytes[0] = 1;
+        if (!cell.isPainted()) {
+            return 0;
         }
 
         //------------COLORS
         if (cell.getColor() == Color.CYAN) {
-            bytes[1] = 1;
+            return 1;
         }
 
         if (cell.getColor() == Color.YELLOW) {
-            bytes[1] = 2;
+            return 2;
         }
 
         if (cell.getColor() == Color.PINK) {
-            bytes[1] = 3;
+            return 3;
         }
 
         if (cell.getColor() == Color.GREEN) {
-            bytes[1] = 4;
+            return 4;
         }
 
         if (cell.getColor() == Color.MAGENTA) {
-            bytes[1] = 5;
+            return 5;
         }
 
         if (cell.getColor() == Color.RED) {
-            bytes[1] = 6;
+            return 6;
         }
 
         if (cell.getColor() == Color.BLUE) {
-            bytes[1] = 7;
+            return 7;
         }
 
         if (cell.getColor() == Color.BLACK) {
-            bytes[1] = 8;
+            return 8;
         }
 
         if (cell.getColor() == Color.WHITE) {
-            bytes[1] = 9;
+            return 9;
         }
-        return bytes;
+
+        throw new CellColorException(Constants.ERR_COLOR_EXCEPTION);
     }
 
     private void initOutput() {

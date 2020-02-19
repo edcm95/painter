@@ -45,7 +45,7 @@ public class LangtonAnt implements Algorithm {
 
     protected void processCell(Cell currentCell) {
         if(currentCell.isPainted()){
-            currentCell.erase();
+            currentCell.initCell();
             updateDirectionAntiClockwise();
             return;
         }

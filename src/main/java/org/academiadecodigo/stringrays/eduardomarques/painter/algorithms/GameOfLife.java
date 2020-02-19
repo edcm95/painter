@@ -109,7 +109,7 @@ public class GameOfLife implements Algorithm {
             return;
         }
 
-        cell.erase();
+        cell.initCell();
     }
 
 

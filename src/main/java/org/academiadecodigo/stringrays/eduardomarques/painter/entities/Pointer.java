@@ -68,13 +68,8 @@ public class Pointer {
 
         Cell cell = grid.getCellInPosition(position);
 
-        if (cell == null) {
-            System.out.println("Cell is null.");
-            return;
-        }
-
         if (cell.isPainted()) {
-            cell.erase();
+            cell.initCell();
             return;
         }
 

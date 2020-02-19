@@ -48,7 +48,7 @@ public class Grid implements Iterable<Position> {
 
     public void resetGrid() {
         for (Position position : this) {
-            mapOfCells.get(position).erase();
+            mapOfCells.get(position).initCell();
         }
 
         System.out.println("GRID: Cells cleared.");

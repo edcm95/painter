@@ -33,7 +33,7 @@ public abstract class AbstractLangtonExtended extends LangtonAnt {
 
     protected boolean ifCellIsThenErase(Cell cell, Color is, boolean clockWise) {
         if (cell.isPainted() && cell.getColor() == is) {
-            cell.erase();
+            cell.initCell();
             processUpdateDirection(clockWise);
             return true;
         }
