@@ -6,7 +6,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class Maze extends AbstractSearcher implements Algorithm {
 
@@ -19,7 +19,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
         long start = System.currentTimeMillis();
         Position rootPosition = new Position(position.getX(), position.getY());
 
-        LinkedList<Position> queue = new LinkedList<>();
+        ArrayDeque<Position> queue = new ArrayDeque<>();
         queue.offer(rootPosition);
 
         while (!queue.isEmpty()) {
@@ -44,7 +44,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
     }
 
     @Override
-    protected void checkCellAndAddToContainer(Cell cell, Position position, LinkedList<Position> container) {
+    protected void checkCellAndAddToContainer(Cell cell, Position position, Deque<Position> container) {
         if (cell == null) {
             return;
         }
@@ -69,7 +69,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
         return true;
     }
 
-    private void emptyContainer(LinkedList<Position> list) {
+    private void emptyContainer(Deque<Position> list) {
         while (!list.isEmpty()) {
             Cell newCell = grid.getCellInPosition(list.poll());
 
@@ -91,6 +91,4 @@ public class Maze extends AbstractSearcher implements Algorithm {
 
         reversePath(position.getOrigin());
     }
-
-
 }

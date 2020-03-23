@@ -6,8 +6,8 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.AbstractSearcher;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Fill extends AbstractSearcher implements Algorithm {
 
@@ -20,7 +20,7 @@ public class Fill extends AbstractSearcher implements Algorithm {
         long start = System.currentTimeMillis();
         Position rootPosition = new Position(position.getX(), position.getY());
 
-        LinkedList<Position> positionStack = new LinkedList<>();
+        ArrayDeque<Position> positionStack = new ArrayDeque<>();
         positionStack.push(rootPosition);
 
         while (!positionStack.isEmpty()) {
@@ -41,9 +41,9 @@ public class Fill extends AbstractSearcher implements Algorithm {
     }
 
     @Override
-    protected void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> list) {
+    protected void checkCellAndAddToContainer(Cell tempCell, Position position, Deque<Position> positionContainer) {
         if (tempCell != null && !tempCell.isPainted()) {
-            list.push(position);
+            positionContainer.push(position);
         }
     }
 }

@@ -5,8 +5,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-
-import java.util.LinkedList;
+import java.util.Deque;
 
 public abstract class AbstractSearcher {
 
@@ -22,7 +21,7 @@ public abstract class AbstractSearcher {
         this.position = position;
     }
 
-    protected void processNeighbouringCells(Position current, LinkedList<Position> positionContainer) {
+    protected void processNeighbouringCells(Position current, Deque<Position> positionContainer) {
         Position toLeft = new Position(current);
         toLeft.translate(Direction.LEFT);
         checkCellAndAddToContainer(grid.getCellInPosition(toLeft), toLeft, positionContainer);
@@ -40,5 +39,5 @@ public abstract class AbstractSearcher {
         checkCellAndAddToContainer(grid.getCellInPosition(toUp), toUp, positionContainer);
     }
 
-    protected abstract void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> list);
+    protected abstract void checkCellAndAddToContainer(Cell tempCell, Position position, Deque<Position> positionContainer);
 }

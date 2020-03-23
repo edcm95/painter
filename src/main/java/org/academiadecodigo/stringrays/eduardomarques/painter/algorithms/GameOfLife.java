@@ -47,15 +47,11 @@ public class GameOfLife implements Algorithm {
             cellAlive = false;
             iterations++;
 
-            // read cell and map events
-            for (Cell cell : grid.getMapOfCells().values()) {
-                availCell(cell);
-            }
+            // evaluate each cell
+            grid.getMapOfCells().values().forEach((this::availCell));
 
             // execute iteration events
-            for (Cell cell : events.keySet()) {
-                executeCell(cell);
-            }
+            events.keySet().forEach(this::executeCell);
 
             sleep();
         }

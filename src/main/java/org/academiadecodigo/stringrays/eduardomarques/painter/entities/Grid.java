@@ -17,41 +17,37 @@ public class Grid implements Iterable<Position> {
     }
 
     private void init() {
+        System.out.println("GRID init: Creating cells");
         mapOfCells = new HashMap<>();
 
         double numberOfRows = (board.getHeight() / Constants.CELL_SIZE);
         double numberOfCols = (board.getWidth() / Constants.CELL_SIZE);
         long start = System.currentTimeMillis();
-        System.out.println("GRID init: Creating cells");
 
-        //Add first cell
-        Position firstCellPos = new Position(board.getX(), board.getY());
-        mapOfCells.put(firstCellPos, new Cell(firstCellPos));
-
-        //Populate map with the rest of the cells
+        //populate map with the rest of the cells
         for (int i = 0; i < numberOfRows; i++) {
-
             for (int j = 0; j < numberOfCols; j++) {
-                Position newCellPos = new Position((board.getX() + j * Constants.CELL_SIZE), (board.getY() + i * Constants.CELL_SIZE));
-                Cell newCell = new Cell(newCellPos);
-                mapOfCells.put(newCellPos, newCell);
+                Position newCellPos = new Position(
+                        (board.getX() + j * Constants.CELL_SIZE),
+                        (board.getY() + i * Constants.CELL_SIZE)
+                );
+                mapOfCells.put(newCellPos, new Cell(newCellPos));
             }
         }
 
-        for (Cell cell : mapOfCells.values()) {
-            cell.initCell();
-        }
+        mapOfCells.values().forEach(Cell::initCell);
 
         long elapsedTime = (System.currentTimeMillis() - start);
-        System.out.println("GRID init: Finished creating cells, it took " + elapsedTime + " ms.");
+        System.out.println("GRID init: Finished creating "
+                + mapOfCells.size()
+                + ", cells, it took "
+                + elapsedTime + " ms."
+        );
     }
 
     public void resetGrid() {
-        for (Position position : this) {
-            mapOfCells.get(position).initCell();
-        }
-
-        System.out.println("GRID: Cells cleared.");
+        mapOfCells.values().parallelStream().forEach((Cell::initCell));
+        System.out.println("GRID: Cells reset.");
     }
 
     public Cell getCellInPosition(Position position) {

@@ -13,7 +13,12 @@ public class Cell {
 
     public Cell(Position position) {
         this.position = position;
-        this.cellShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);
+        this.cellShape = new Rectangle(
+                position.getX(),
+                position.getY(),
+                Constants.CELL_SIZE,
+                Constants.CELL_SIZE
+        );
     }
 
     public void initCell() {
@@ -33,7 +38,6 @@ public class Cell {
             initCell();
             return;
         }
-
 
         switch (value) {
             case 1:

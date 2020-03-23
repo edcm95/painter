@@ -7,6 +7,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorit
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.AbstractSearcher;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class Refill extends AbstractSearcher implements Algorithm {
@@ -43,7 +44,7 @@ public class Refill extends AbstractSearcher implements Algorithm {
     }
 
     @Override
-    protected void checkCellAndAddToContainer(Cell tempCell, Position position, LinkedList<Position> list) {
+    protected void checkCellAndAddToContainer(Cell tempCell, Position position, Deque<Position> list) {
         if (tempCell != null &&
                 tempCell.isPainted() &&
                 tempCell.getColor() == rootColor) {

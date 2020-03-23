@@ -7,11 +7,8 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.io.*;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 
 public class Saver {
@@ -26,76 +23,49 @@ public class Saver {
 
     public void saveData(HashMap<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
-        /*
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            objectMapper.writeValue(new File(filepath), map);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        } finally {
-            System.out.println("Saving process finished, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
-        }
-        */
-
-
         initOutput();
 
         try {
-            for (Cell cell : map.values()) {
-                bOut.write(decomposeCell(cell));
-            }
+
+            map.values().parallelStream().forEachOrdered((cell) -> {
+                try {
+                    bOut.write(decomposeCell(cell));
+
+                } catch (CellColorException | IOException e) {
+                    e.printStackTrace();
+                }
+
+            });
+
             bOut.flush();
 
         } catch (IOException e) {
-            System.out.println("SAVER: Something went wrong writing file.");
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
 
         } finally {
             closeStreams();
         }
-
-        System.out.println("SAVER: Finished saving to file, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
+        System.out.println("SAVER: Finished saving to file, took "
+                + (System.currentTimeMillis() - timeStamp)
+                + " ms.");
     }
 
     public void loadData(Map<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
-
-        /*
-        ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<Position, Cell> fetched = null;
-
-        TypeReference<HashMap<Position, Cell>> typeReference = new TypeReference<HashMap<Position, Cell>>() {
-        };
-
-        try {
-            fetched = objectMapper.readValue(new File(filepath), typeReference);
-            grid.loadMap(fetched);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        } finally {
-            System.out.println("Loading process finished, took " + (System.currentTimeMillis() - timeStamp) + " ms.");
-        }
-        */
-
         initInput();
 
         try {
-            for (Cell cell : map.values()) {
-                byte value = bIn.readNBytes(1)[0];
-                cell.writeCell(value);
-            }
 
-        } catch (IOException | CellColorException e) {
-            System.out.println("SAVER: Something went wrong loading the data. ");
-            System.out.println(e.getMessage());
+            map.values().parallelStream().forEachOrdered((cell) -> {
+                byte value;
+                try {
+                    value = bIn.readNBytes(1)[0];
+                    cell.writeCell(value);
+
+                } catch (IOException | CellColorException e) {
+                    System.out.println("SAVER: Something went wrong loading the data. \n" + e.getMessage());
+                }
+            });
 
         } finally {
             System.out.println("Operation took: " + (System.currentTimeMillis() - timeStamp));
@@ -103,7 +73,7 @@ public class Saver {
         }
     }
 
-    private byte decomposeCell(Cell cell) throws Exception {
+    private byte decomposeCell(Cell cell) throws CellColorException {
 
         //---------IS PAINTED?
         if (!cell.isPainted()) {
