@@ -21,7 +21,7 @@ public class Saver {
         filepath = "save/save-file";
     }
 
-    public void saveData(HashMap<Position, Cell> map) {
+    public void saveData(Map<Position, Cell> map) {
         long timeStamp = System.currentTimeMillis();
         initOutput();
 

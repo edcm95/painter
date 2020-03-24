@@ -5,10 +5,12 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Grid implements Iterable<Position> {
 
-    private HashMap<Position, Cell> mapOfCells;
+    private Map<Position, Cell> mapOfCells;
     private Rectangle board;
 
     public Grid(Rectangle board) {
@@ -59,7 +61,7 @@ public class Grid implements Iterable<Position> {
         return mapOfCells.keySet().iterator();
     }
 
-    public HashMap<Position, Cell> getMapOfCells() {
+    public Map<Position, Cell> getMapOfCells() {
         return mapOfCells;
     }
 

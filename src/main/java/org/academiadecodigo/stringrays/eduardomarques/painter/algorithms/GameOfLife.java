@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GameOfLife implements Algorithm {
 
@@ -27,7 +28,7 @@ public class GameOfLife implements Algorithm {
     }
 
     private void initialize() {
-        this.events = new HashMap<>();
+        this.events = new ConcurrentHashMap<>();
         this.mapOfNeighbours = new HashMap<>();
         mapNeighbours();
     }
@@ -48,10 +49,10 @@ public class GameOfLife implements Algorithm {
             iterations++;
 
             // evaluate each cell
-            grid.getMapOfCells().values().forEach((this::availCell));
+            grid.getMapOfCells().values().parallelStream().forEach(this::availCell);
 
             // execute iteration events
-            events.keySet().forEach(this::executeCell);
+            events.keySet().parallelStream().forEach(this::executeCell);
 
             sleep();
         }
