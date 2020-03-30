@@ -40,6 +40,9 @@ public class AlgorithmFactory {
             case GAME_OF_LIFE:
                 return new GameOfLife(grid, color);
 
+            case COVID_19:
+                return new Covid19(grid, color);
+
             default:
                 return null;
         }

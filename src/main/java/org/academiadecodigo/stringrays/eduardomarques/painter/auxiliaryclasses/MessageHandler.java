@@ -5,14 +5,16 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorit
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
+import java.util.HashMap;
+
 public class MessageHandler {
 
     private Rectangle board;
     private Painter painter;
-    private Text saveSlot;
-    private Text algorithmName;
+    private HashMap<String, Text> textMap;
 
     public MessageHandler(Rectangle board, Painter painter) {
+        this.textMap = new HashMap<>();
         this.board = board;
         this.painter = painter;
         init();
@@ -20,39 +22,32 @@ public class MessageHandler {
 
     private void init() {
         //Make instructions
-        Text text0 = new Text(board.getWidth() + board.getX() + 10, board.getY(), "Instructions:");
-        Text text1 = new Text(text0.getX(), text0.getY() + 40, "Movement: VIm, P - Exit");
-        Text text2 = new Text(text1.getX(), text1.getY() + 20, "R - Recenter pointer, C - Clear");
-        Text text3 = new Text(text2.getX(), text2.getY() + 40, "1 - Cyan, 2 - Yellow, 3 - Green");
-        Text text4 = new Text(text3.getX(), text3.getY() + 20, "4 - Pink, 5 - Magenta, 6 - Red");
-        Text text5 = new Text(text4.getX(), text4.getY() + 20, "7 - Blue, 8 - Black, 9 - White");
-        Text text6 = new Text(text5.getX(), text5.getY() + 40, "N - Cycle algorithm, E - Execute algorithm");
-        Text text7 = new Text(text6.getX(), text6.getY() + 20, "B - Cycle save slot, S - Save, X - Load");
-        saveSlot = new Text(text7.getX(), text7.getY() + 40, "Save slot: " + painter.getSaveSlot());
-        algorithmName = new Text(saveSlot.getX(), saveSlot.getY() + 20, "Algorithm: " + painter.getCurrentAlgorithm());
+        textMap.put("0" ,new Text(board.getWidth() + board.getX() + 10, board.getY(), "Instructions:"));
+        textMap.put("1", new Text(textMap.get("0").getX(), textMap.get("0").getY() + 40, "Movement: VIm, P - Exit"));
+        textMap.put("2", new Text(textMap.get("1").getX(), textMap.get("1").getY() + 20, "R - Recenter pointer, C - Clear"));
+        textMap.put("3", new Text(textMap.get("2").getX(), textMap.get("2").getY() + 40, "1 - Cyan, 2 - Yellow, 3 - Green"));
+        textMap.put("4", new Text(textMap.get("3").getX(), textMap.get("3").getY() + 20, "4 - Pink, 5 - Magenta, 6 - Red"));
+        textMap.put("5", new Text(textMap.get("4").getX(), textMap.get("4").getY() + 20, "7 - Blue, 8 - Black, 9 - White"));
+        textMap.put("6", new Text(textMap.get("5").getX(), textMap.get("5").getY() + 40, "N - Cycle algorithm, E - Execute algorithm"));
+        textMap.put("7", new Text(textMap.get("6").getX(), textMap.get("6").getY() + 20, "B - Cycle save slot, S - Save, X - Load"));
+        textMap.put("saveSlot", new Text(textMap.get("7").getX(), textMap.get("7").getY() + 40, "Save slot: " + painter.getSaveSlot()));
+        textMap.put("algorithmName", new Text(textMap.get("saveSlot").getX(), textMap.get("saveSlot").getY() + 20, "Algorithm: " + painter.getCurrentAlgorithm()));
 
         //Draw
-        text0.draw();
-        text1.draw();
-        text2.draw();
-        text3.draw();
-        text4.draw();
-        text5.draw();
-        text6.draw();
-        text7.draw();
-        saveSlot.draw();
-        algorithmName.draw();
+        for(Text value : textMap.values()) {
+            value.draw();
+        }
     }
 
     public void updateSaveSlot() {
-        saveSlot.delete();
-        saveSlot.setText("Save slot: " + painter.getSaveSlot());
-        saveSlot.draw();
+        textMap.get("saveSlot").delete();
+        textMap.get("saveSlot").setText("Save slot: " + painter.getSaveSlot());
+        textMap.get("saveSlot").draw();
     }
 
     public void updateAlgorithm(AlgorithmName algorithm) {
-        algorithmName.delete();
-        algorithmName.setText("Algorithm: " + algorithm);
-        algorithmName.draw();
+        textMap.get("algorithmName").delete();
+        textMap.get("algorithmName").setText("Algorithm: " + algorithm);
+        textMap.get("algorithmName").draw();
     }
 }

@@ -9,7 +9,8 @@ public enum AlgorithmName {
     LANGTON_CHAOS("Langton's Ant Chaos"),
     LANGTON_TRIANGLE("Langton's Ant Spiderman"),
     LANGTON_CONVOLUTED("Langton's Ant Convoluted"),
-    GAME_OF_LIFE("Conway's Game of Life");
+    GAME_OF_LIFE("Conway's Game of Life"),
+    COVID_19("SARS-Cov2");
 
     private String name;
 

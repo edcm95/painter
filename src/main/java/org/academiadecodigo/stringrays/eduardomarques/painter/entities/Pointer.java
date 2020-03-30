@@ -85,8 +85,7 @@ public class Pointer {
             return;
         }
 
-
-        threadPool.submit(algorithm);
+        threadPool.execute(algorithm);
         System.out.println("Threads active: " + Thread.activeCount());
     }
 

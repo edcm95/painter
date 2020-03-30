@@ -1,11 +1,9 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms;
-
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
