@@ -7,7 +7,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Pointer;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Saver;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Painter {
@@ -19,6 +19,11 @@ public class Painter {
     private Pointer pointer;
     private MessageHandler messageHandler;
 
+    /**
+     * Constructor
+     * Defines initial save slot and algorythm index and calls
+     * {@link #init()}
+     */
     public Painter() {
         this.slot = 0;
         this.algorithmIndex = 0;
@@ -26,14 +31,13 @@ public class Painter {
     }
 
     /**
-     * Initializes some properties, extends contructor's logic
-     * Also draws the board(main app shape) and the pointer (entity that moves and allows
+     * Initializes properties
+     * Also draws the board (app's main shape) and the pointer (entity that moves and allows
      * cell selection and interaction)
      */
     private void init() {
         //Primary instance
-        Rectangle board = new Rectangle(Constants.BORDER, Constants.BORDER, Constants.WIDTH, Constants.HEIGHT);
-
+        Rectangle board = new Rectangle(Config.BORDER, Config.BORDER, Config.WIDTH, Config.HEIGHT);
         messageHandler = new MessageHandler(board, this);
 
         //Primary draw

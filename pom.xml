@@ -9,10 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/de.gurkenlabs/litiengine -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.10.1</version>
+            <groupId>de.gurkenlabs</groupId>
+            <artifactId>litiengine</artifactId>
+            <version>0.4.20</version>
         </dependency>
     </dependencies>
 

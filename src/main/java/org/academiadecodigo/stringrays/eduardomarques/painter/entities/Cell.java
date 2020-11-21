@@ -1,76 +1,61 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.exceptions.CellColorException;
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class Cell {
+import java.io.Serializable;
+
+/**
+ * Basic unit, define a small square
+ * The grid is made up of many cells
+ */
+public class Cell implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final Rectangle cellShape;
     private final Position position;
     private boolean painted;
 
+    /**
+     * Initializes one cell based on one position
+     *
+     * @param position from wich to equal values on new object
+     */
     public Cell(Position position) {
         this.position = position;
         this.cellShape = new Rectangle(
                 position.getX(),
                 position.getY(),
-                Constants.CELL_SIZE,
-                Constants.CELL_SIZE
+                Config.CELL_SIZE,
+                Config.CELL_SIZE
         );
     }
 
+    /**
+     * Initializes the cell, defined color to avoid null
+     * and draws it on screen
+     */
     public void initCell() {
         cellShape.setColor(Color.BLACK);
         cellShape.draw();
         painted = false;
     }
 
-    public synchronized void paint() {
-        //cellShape.setColor(color);
-        cellShape.fill();
-        painted = true;
-    }
-
-    public void writeCell(byte value) throws CellColorException {
-        if (value == 0) {
-            initCell();
+    public void copyState(Cell other) {
+        if (other.isPainted()) {
+            setColor(other.getColor());
+            paint();
             return;
         }
+        initCell();
+    }
 
-        switch (value) {
-            case 1:
-                setColor(Color.CYAN);
-                break;
-            case 2:
-                setColor(Color.YELLOW);
-                break;
-            case 3:
-                setColor(Color.PINK);
-                break;
-            case 4:
-                setColor(Color.GREEN);
-                break;
-            case 5:
-                setColor(Color.MAGENTA);
-                break;
-            case 6:
-                setColor(Color.RED);
-                break;
-            case 7:
-                setColor(Color.BLUE);
-                break;
-            case 8:
-                setColor(Color.BLACK);
-                break;
-            case 9:
-                setColor(Color.WHITE);
-                break;
-            default:
-                throw new CellColorException(Constants.ERR_COLOR_EXCEPTION);
-        }
-        paint();
+    public synchronized void paint() {
+        //cellShape.setColor(getColor());
+        cellShape.fill();
+        painted = true;
     }
 
     public void setColor(Color color) {

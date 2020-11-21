@@ -1,12 +1,11 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Grid implements Iterable<Position> {
 
@@ -22,16 +21,16 @@ public class Grid implements Iterable<Position> {
         System.out.println("GRID init: Creating cells");
         mapOfCells = new HashMap<>();
 
-        double numberOfRows = (board.getHeight() / Constants.CELL_SIZE);
-        double numberOfCols = (board.getWidth() / Constants.CELL_SIZE);
+        double numberOfRows = (board.getHeight() / Config.CELL_SIZE);
+        double numberOfCols = (board.getWidth() / Config.CELL_SIZE);
         long start = System.currentTimeMillis();
 
         //populate map with the rest of the cells
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfCols; j++) {
                 Position newCellPos = new Position(
-                        (board.getX() + j * Constants.CELL_SIZE),
-                        (board.getY() + i * Constants.CELL_SIZE)
+                        (board.getX() + j * Config.CELL_SIZE),
+                        (board.getY() + i * Config.CELL_SIZE)
                 );
                 mapOfCells.put(newCellPos, new Cell(newCellPos));
             }

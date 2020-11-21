@@ -6,7 +6,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorit
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmFactory;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,10 +24,10 @@ public class Pointer {
         this.threadPool = Executors.newSingleThreadExecutor();
         this.grid = grid;
         this.position = position;
-        this.pointerShape = new Rectangle(position.getX(), position.getY(), Constants.CELL_SIZE, Constants.CELL_SIZE);
+        this.pointerShape = new Rectangle(position.getX(), position.getY(), Config.CELL_SIZE, Config.CELL_SIZE);
 
-        //Because I like cyan
-        this.color = Color.CYAN;
+
+        this.color = Color.BLACK;
     }
 
     /**
@@ -40,15 +40,15 @@ public class Pointer {
         }
 
         position.translate(direction);
-        pointerShape.translate(direction.getDeltaX() * Constants.CELL_SIZE, direction.getDeltaY() * Constants.CELL_SIZE);
+        pointerShape.translate(direction.getDeltaX() * Config.CELL_SIZE, direction.getDeltaY() * Config.CELL_SIZE);
         paintCell();
     }
 
     private boolean availBoundaries(Direction direction) {
-        return (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + Constants.CELL_SIZE) ||
-                (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - Constants.CELL_SIZE) ||
-                (direction == Direction.UP && position.getY() < grid.getBoard().getY() + Constants.CELL_SIZE) ||
-                (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - Constants.CELL_SIZE);
+        return (direction == Direction.LEFT && position.getX() < grid.getBoard().getX() + Config.CELL_SIZE) ||
+                (direction == Direction.RIGHT && position.getX() > grid.getBoard().getWidth() - Config.CELL_SIZE) ||
+                (direction == Direction.UP && position.getY() < grid.getBoard().getY() + Config.CELL_SIZE) ||
+                (direction == Direction.DOWN && position.getY() > grid.getBoard().getHeight() - Config.CELL_SIZE);
     }
 
     public void recenter() {

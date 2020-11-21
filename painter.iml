@@ -11,8 +11,19 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="simplegraphics" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.1" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.1" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.1" level="project" />
+    <orderEntry type="library" name="Maven: de.gurkenlabs:litiengine:0.4.20" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: net.java.jinput:jinput:2.0.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: net.java.jinput:jinput:natives-all:2.0.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.googlecode.soundlibs:jorbis:0.0.17.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.googlecode.soundlibs:tritonus-share:0.3.7.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.googlecode.soundlibs:vorbisspi:1.0.3.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.googlecode.soundlibs:mp3spi:1.9.5.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.googlecode.soundlibs:jlayer:1.0.1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.code-disaster.steamworks4j:steamworks4j:1.8.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: javax.xml.bind:jaxb-api:2.4.0-b180830.0359" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.xml.bind:jaxb-core:2.3.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.xml.bind:jaxb-impl:2.3.2" level="project" />
+    <orderEntry type="library" name="simple-graphics-0.2.1-SNAPSHOT-jar-with-dependencies" level="project" />
   </component>
 </module>

@@ -1,15 +1,16 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Constants;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Position {
+public class Position implements Serializable {
 
     private double X;
     private double Y;
-    private Position origin;
+    private transient Position origin;
 
     public Position(double X, double Y) {
         this.X = X;
@@ -38,8 +39,8 @@ public class Position {
      * Translates the position (moves it based on a direction)
      */
     public void translate(Direction direction) {
-        this.X = X + (Constants.CELL_SIZE * direction.getDeltaX());
-        this.Y = Y + (Constants.CELL_SIZE * direction.getDeltaY());
+        this.X = X + (Config.CELL_SIZE * direction.getDeltaX());
+        this.Y = Y + (Config.CELL_SIZE * direction.getDeltaY());
     }
 
     public void setPosition(double X, double Y) {
