@@ -53,13 +53,3 @@ Or package and run:
 mvn package
 java -jar target/painer-1.0-SNAPSHOT.jar
 ```
-
-## Try it in the browser
-
-A live version runs via [CheerpJ](https://cheerpj.com/) on GitHub Pages:
-
-```
-https://<your-username>.github.io/painter
-```
-
-After enabling Pages (Settings → Pages → deploy from `docs/`), the `docs/` folder serves the app — no install needed.
