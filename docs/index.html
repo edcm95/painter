@@ -57,7 +57,8 @@
         }).then(function () {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('canvas-wrapper').style.display = 'block';
-            return cheerpjRunJar("/app/painter/painter-1.0-SNAPSHOT-jar-with-dependencies.jar");
+            var jarPath = window.location.pathname.replace(/\/[^/]*$/, '/') + "painter-1.0-SNAPSHOT-jar-with-dependencies.jar";
+            return cheerpjRunJar("/app" + jarPath);
         }).catch(function (err) {
             document.getElementById('loading').innerHTML =
                 '<div style="color: #f44; font-size: 18px;">Failed to load Painter</div>' +
