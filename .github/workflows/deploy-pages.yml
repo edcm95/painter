@@ -32,6 +32,9 @@ jobs:
           java-version: 17
           distribution: temurin
 
+      - name: Patch SimpleGraphics for Java 8 (CheerpJ compat)
+        run: sed -i 's/<source>17<\/source>/<source>8<\/source>/; s/<target>17<\/target>/<target>8<\/target>/' simple-graphics/pom.xml
+
       - name: Build SimpleGraphics
         run: mvn install -f simple-graphics/pom.xml -DskipTests
 
