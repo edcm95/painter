@@ -8,7 +8,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Saver;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import com.codeforall.simplegraphics.graphics.Rectangle;
 
 public class Painter {
 

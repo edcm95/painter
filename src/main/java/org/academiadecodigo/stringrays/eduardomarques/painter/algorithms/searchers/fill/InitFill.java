@@ -4,7 +4,7 @@ package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.search
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Color;
 
 public class InitFill {
 

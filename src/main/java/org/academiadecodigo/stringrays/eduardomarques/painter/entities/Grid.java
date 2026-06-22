@@ -1,7 +1,7 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import com.codeforall.simplegraphics.graphics.Rectangle;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,8 +1,8 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import com.codeforall.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Rectangle;
 
 import java.io.Serializable;
 
@@ -16,6 +16,7 @@ public class Cell implements Serializable {
 
     private final Rectangle cellShape;
     private final Position position;
+    private Color color;
     private boolean painted;
 
     /**
@@ -38,7 +39,8 @@ public class Cell implements Serializable {
      * and draws it on screen
      */
     public void initCell() {
-        cellShape.setColor(Color.BLACK);
+        color = Color.BLACK;
+        cellShape.setColor(color);
         cellShape.draw();
         painted = false;
     }
@@ -53,17 +55,17 @@ public class Cell implements Serializable {
     }
 
     public synchronized void paint() {
-        //cellShape.setColor(getColor());
         cellShape.fill();
         painted = true;
     }
 
     public void setColor(Color color) {
-        this.cellShape.setColor(color);
+        this.color = color;
+        cellShape.setColor(color);
     }
 
     public Color getColor() {
-        return cellShape.getColor();
+        return color;
     }
 
     public boolean isPainted() {

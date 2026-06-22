@@ -4,7 +4,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langton
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Color;
 
 public abstract class AbstractLangtonExtended extends LangtonAnt {
 

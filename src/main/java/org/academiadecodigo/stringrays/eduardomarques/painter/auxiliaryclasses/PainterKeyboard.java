@@ -2,11 +2,11 @@ package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.Painter;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Pointer;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import com.codeforall.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.keyboard.Keyboard;
+import com.codeforall.simplegraphics.keyboard.KeyboardEvent;
+import com.codeforall.simplegraphics.keyboard.KeyboardEventType;
+import com.codeforall.simplegraphics.keyboard.KeyboardHandler;
 
 public class PainterKeyboard implements KeyboardHandler {
 

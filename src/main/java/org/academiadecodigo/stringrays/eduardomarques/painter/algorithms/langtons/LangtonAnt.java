@@ -5,7 +5,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Color;
 
 public class LangtonAnt implements Algorithm {
 

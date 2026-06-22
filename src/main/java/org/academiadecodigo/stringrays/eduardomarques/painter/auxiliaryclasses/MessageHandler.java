@@ -2,8 +2,8 @@ package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.Painter;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
+import com.codeforall.simplegraphics.graphics.Rectangle;
+import com.codeforall.simplegraphics.graphics.Text;
 
 import java.util.HashMap;
 

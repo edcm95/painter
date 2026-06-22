@@ -1,7 +1,7 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import com.codeforall.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmFactory;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;

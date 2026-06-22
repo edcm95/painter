@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import com.codeforall.simplegraphics.graphics.Color;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 
