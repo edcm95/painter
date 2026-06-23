@@ -5,16 +5,16 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 
 public class LangtonAnt implements Algorithm {
 
     private Grid grid;
-    private Color color;
+    private ColorWrapper color;
     private Position position;
     private Direction direction;
 
-    public LangtonAnt(Grid grid, Color color, Position position) {
+    public LangtonAnt(Grid grid, ColorWrapper color, Position position) {
         this.grid = grid;
         this.color = color;
         this.position = new Position(position.getX(), position.getY());

@@ -2,7 +2,7 @@ package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.Painter;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Pointer;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import com.codeforall.simplegraphics.keyboard.Keyboard;
 import com.codeforall.simplegraphics.keyboard.KeyboardEvent;
 import com.codeforall.simplegraphics.keyboard.KeyboardEventType;
@@ -99,39 +99,39 @@ public class PainterKeyboard implements KeyboardHandler {
                 break;
 
             case (KeyboardEvent.KEY_1):
-                pointer.setColor(Color.CYAN);
+                pointer.setColor(ColorWrapper.CYAN);
                 break;
 
             case (KeyboardEvent.KEY_2):
-                pointer.setColor(Color.YELLOW);
+                pointer.setColor(ColorWrapper.YELLOW);
                 break;
 
             case (KeyboardEvent.KEY_3):
-                pointer.setColor(Color.GREEN);
+                pointer.setColor(ColorWrapper.GREEN);
                 break;
 
             case (KeyboardEvent.KEY_4):
-                pointer.setColor(Color.PINK);
+                pointer.setColor(ColorWrapper.PINK);
                 break;
 
             case (KeyboardEvent.KEY_5):
-                pointer.setColor(Color.MAGENTA);
+                pointer.setColor(ColorWrapper.MAGENTA);
                 break;
 
             case (KeyboardEvent.KEY_6):
-                pointer.setColor(Color.RED);
+                pointer.setColor(ColorWrapper.RED);
                 break;
 
             case (KeyboardEvent.KEY_7):
-                pointer.setColor(Color.BLUE);
+                pointer.setColor(ColorWrapper.BLUE);
                 break;
 
             case (KeyboardEvent.KEY_8):
-                pointer.setColor(Color.BLACK);
+                pointer.setColor(ColorWrapper.BLACK);
                 break;
 
             case (KeyboardEvent.KEY_9):
-                pointer.setColor(Color.WHITE);
+                pointer.setColor(ColorWrapper.WHITE);
                 break;
 
             case (KeyboardEvent.KEY_X):

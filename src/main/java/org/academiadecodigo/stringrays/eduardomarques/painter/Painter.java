@@ -2,13 +2,13 @@ package org.academiadecodigo.stringrays.eduardomarques.painter;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.MessageHandler;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.PainterKeyboard;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.RectangleWrapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Pointer;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Saver;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import com.codeforall.simplegraphics.graphics.Rectangle;
 
 public class Painter {
 
@@ -37,7 +37,7 @@ public class Painter {
      */
     private void init() {
         //Primary instance
-        Rectangle board = new Rectangle(Config.BORDER, Config.BORDER, Config.WIDTH, Config.HEIGHT);
+        RectangleWrapper board = new RectangleWrapper(Config.BORDER, Config.BORDER, Config.WIDTH, Config.HEIGHT);
         messageHandler = new MessageHandler(board, this);
 
         //Primary draw

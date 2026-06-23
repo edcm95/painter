@@ -3,14 +3,14 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.D
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GameOfLife implements Algorithm {
 
-    private final Color color;
+    private final ColorWrapper color;
     private final Grid grid;
 
     private Map<Cell, Cell[]> mapOfNeighbours;
@@ -19,7 +19,7 @@ public class GameOfLife implements Algorithm {
     private long timeStamp;
     private boolean cellAlive;
 
-    public GameOfLife(Grid grid, Color color) {
+    public GameOfLife(Grid grid, ColorWrapper color) {
         this.color = color;
         this.grid = grid;
         this.cellAlive = true;

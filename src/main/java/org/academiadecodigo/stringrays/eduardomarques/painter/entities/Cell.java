@@ -1,10 +1,9 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import com.codeforall.simplegraphics.graphics.Color;
-import com.codeforall.simplegraphics.graphics.Rectangle;
-
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import java.io.Serializable;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.RectangleWrapper;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 
 /**
  * Basic unit, define a small square
@@ -14,9 +13,9 @@ public class Cell implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final Rectangle cellShape;
+    private final RectangleWrapper cellShape;
     private final Position position;
-    private Color color;
+    private ColorWrapper color;
     private boolean painted;
 
     /**
@@ -26,7 +25,7 @@ public class Cell implements Serializable {
      */
     public Cell(Position position) {
         this.position = position;
-        this.cellShape = new Rectangle(
+        this.cellShape = new RectangleWrapper(
                 position.getX(),
                 position.getY(),
                 Config.CELL_SIZE,
@@ -39,8 +38,8 @@ public class Cell implements Serializable {
      * and draws it on screen
      */
     public void initCell() {
-        color = Color.BLACK;
-        cellShape.setColor(color);
+        color = ColorWrapper.BLACK;
+        cellShape.setColor(color.unwrap());
         cellShape.draw();
         painted = false;
     }
@@ -59,12 +58,12 @@ public class Cell implements Serializable {
         painted = true;
     }
 
-    public void setColor(Color color) {
+    public void setColor(ColorWrapper color) {
         this.color = color;
-        cellShape.setColor(color);
+        cellShape.setColor(color.unwrap());
     }
 
-    public Color getColor() {
+    public ColorWrapper getColor() {
         return color;
     }
 

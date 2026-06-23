@@ -5,14 +5,14 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.AbstractSearcher;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
 public class Refill extends AbstractSearcher implements Algorithm {
 
-    public Refill(Grid grid, Color color, Position position) {
+    public Refill(Grid grid, ColorWrapper color, Position position) {
         super(grid, color, position);
     }
 

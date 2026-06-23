@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms;
 
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.LangtonAnt;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended.*;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.Maze;
@@ -10,7 +10,7 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 
 public class AlgorithmFactory {
 
-    public static Algorithm getInstanceOf(AlgorithmName name, Grid grid, Color color, Position position) {
+    public static Algorithm getInstanceOf(AlgorithmName name, Grid grid, ColorWrapper color, Position position) {
 
         switch (name) {
             case FILL:

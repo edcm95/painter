@@ -1,18 +1,17 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-import com.codeforall.simplegraphics.graphics.Rectangle;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.RectangleWrapper;
+import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
 
 public class Grid implements Iterable<Position> {
 
     private Map<Position, Cell> mapOfCells;
-    private Rectangle board;
+    private RectangleWrapper board;
 
-    public Grid(Rectangle board) {
+    public Grid(RectangleWrapper board) {
         this.board = board;
         init();
     }
@@ -64,7 +63,7 @@ public class Grid implements Iterable<Position> {
         return mapOfCells;
     }
 
-    public Rectangle getBoard() {
+    public RectangleWrapper getBoard() {
         return board;
     }
 }

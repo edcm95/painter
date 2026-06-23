@@ -5,13 +5,13 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.searchers.AbstractSearcher;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Fill extends AbstractSearcher implements Algorithm {
 
-    public Fill(Grid grid, Color color, Position position) {
+    public Fill(Grid grid, ColorWrapper color, Position position) {
         super(grid, color, position);
     }
 

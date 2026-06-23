@@ -1,33 +1,32 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.entities;
 
-import com.codeforall.simplegraphics.graphics.Color;
-import com.codeforall.simplegraphics.graphics.Rectangle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmFactory;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.RectangleWrapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.config.Config;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Pointer {
 
     private boolean writing;
     private Position position;
-    private Rectangle pointerShape;
+    private RectangleWrapper pointerShape;
     private Grid grid;
-    private Color color;
+    private ColorWrapper color;
     private ExecutorService threadPool;
 
     public Pointer(Position position, Grid grid) {
         this.threadPool = Executors.newSingleThreadExecutor();
         this.grid = grid;
         this.position = position;
-        this.pointerShape = new Rectangle(position.getX(), position.getY(), Config.CELL_SIZE, Config.CELL_SIZE);
+        this.pointerShape = new RectangleWrapper(position.getX(), position.getY(), Config.CELL_SIZE, Config.CELL_SIZE);
 
 
-        this.color = Color.BLACK;
+        this.color = ColorWrapper.BLACK;
     }
 
     /**
@@ -93,13 +92,13 @@ public class Pointer {
         writing = value;
     }
 
-    public void setColor(Color color) {
+    public void setColor(ColorWrapper color) {
         this.color = color;
         draw();
     }
 
     public void draw() {
-        pointerShape.setColor(color);
+        pointerShape.setColor(color.unwrap());
         pointerShape.fill();
     }
 }

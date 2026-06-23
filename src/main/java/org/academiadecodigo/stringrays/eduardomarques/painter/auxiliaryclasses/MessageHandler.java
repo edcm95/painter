@@ -1,19 +1,17 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses;
 
+import com.codeforall.simplegraphics.graphics.Text;
+import java.util.HashMap;
 import org.academiadecodigo.stringrays.eduardomarques.painter.Painter;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.AlgorithmName;
-import com.codeforall.simplegraphics.graphics.Rectangle;
-import com.codeforall.simplegraphics.graphics.Text;
-
-import java.util.HashMap;
 
 public class MessageHandler {
 
-    private Rectangle board;
+    private RectangleWrapper board;
     private Painter painter;
     private HashMap<String, Text> textMap;
 
-    public MessageHandler(Rectangle board, Painter painter) {
+    public MessageHandler(RectangleWrapper board, Painter painter) {
         this.textMap = new HashMap<>();
         this.board = board;
         this.painter = painter;

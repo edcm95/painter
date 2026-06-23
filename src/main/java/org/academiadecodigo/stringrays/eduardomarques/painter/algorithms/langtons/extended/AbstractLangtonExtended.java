@@ -1,17 +1,17 @@
 package org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.extended;
 
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.langtons.LangtonAnt;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import com.codeforall.simplegraphics.graphics.Color;
 
 public abstract class AbstractLangtonExtended extends LangtonAnt {
 
-    protected Color[] colors;
+    protected ColorWrapper[] colors;
     protected boolean[] directions;
 
-    public AbstractLangtonExtended(Grid grid, Color color, Position position) {
+    public AbstractLangtonExtended(Grid grid, ColorWrapper color, Position position) {
         super(grid, color, position);
         init();
     }
@@ -31,7 +31,7 @@ public abstract class AbstractLangtonExtended extends LangtonAnt {
         ifCellIsThenErase(cell, colors[colors.length - 1], directions[directions.length - 1]);
     }
 
-    protected boolean ifCellIsThenErase(Cell cell, Color is, boolean clockWise) {
+    protected boolean ifCellIsThenErase(Cell cell, ColorWrapper is, boolean clockWise) {
         if (cell.isPainted() && cell.getColor() == is) {
             cell.initCell();
             processUpdateDirection(clockWise);
@@ -40,7 +40,7 @@ public abstract class AbstractLangtonExtended extends LangtonAnt {
         return false;
     }
 
-    protected boolean ifCellIsThenSet(Cell cell, Color toBe, boolean clockWise) {
+    protected boolean ifCellIsThenSet(Cell cell, ColorWrapper toBe, boolean clockWise) {
         if (!cell.isPainted()) {
             cell.setColor(toBe);
             cell.paint();
@@ -51,7 +51,7 @@ public abstract class AbstractLangtonExtended extends LangtonAnt {
         return false;
     }
 
-    protected boolean ifCellIsThenSet(Cell cell, Color is, Color toBe, boolean clockWise) {
+    protected boolean ifCellIsThenSet(Cell cell, ColorWrapper is, ColorWrapper toBe, boolean clockWise) {
         if (cell.isPainted() && cell.getColor() == is) {
             cell.setColor(toBe);
             cell.paint();

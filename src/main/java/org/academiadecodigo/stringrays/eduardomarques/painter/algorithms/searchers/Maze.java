@@ -4,14 +4,14 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
 import org.academiadecodigo.stringrays.eduardomarques.painter.algorithms.Algorithm;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 
 import java.util.*;
 
 public class Maze extends AbstractSearcher implements Algorithm {
 
 
-    public Maze(Grid grid, Color color, Position position) {
+    public Maze(Grid grid, ColorWrapper color, Position position) {
         super(grid, color, position);
     }
 
@@ -64,7 +64,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
             return false;
         }
 
-        tempCell.setColor(Color.WHITE);
+        tempCell.setColor(ColorWrapper.WHITE);
         tempCell.paint();
         return true;
     }
@@ -74,7 +74,7 @@ public class Maze extends AbstractSearcher implements Algorithm {
             Cell newCell = grid.getCellInPosition(list.poll());
 
             if (!newCell.isPainted()) {
-                newCell.setColor(Color.GREEN);
+                newCell.setColor(ColorWrapper.GREEN);
                 newCell.paint();
             }
         }

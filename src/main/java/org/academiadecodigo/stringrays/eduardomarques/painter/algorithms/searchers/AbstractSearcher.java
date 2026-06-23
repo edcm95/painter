@@ -4,17 +4,17 @@ import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Grid;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Cell;
 import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.Direction;
 import org.academiadecodigo.stringrays.eduardomarques.painter.entities.Position;
-import com.codeforall.simplegraphics.graphics.Color;
+import org.academiadecodigo.stringrays.eduardomarques.painter.auxiliaryclasses.ColorWrapper;
 import java.util.Deque;
 
 public abstract class AbstractSearcher {
 
     protected Grid grid;
-    protected Color color;
-    protected Color rootColor;
+    protected ColorWrapper color;
+    protected ColorWrapper rootColor;
     protected Position position;
 
-    public AbstractSearcher(Grid grid, Color color, Position position) {
+    public AbstractSearcher(Grid grid, ColorWrapper color, Position position) {
         this.grid = grid;
         this.color = color;
         this.rootColor = grid.getCellInPosition(position).getColor();
