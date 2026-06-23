@@ -8,19 +8,19 @@ import java.io.Serializable;
 
 public class ColorWrapper implements Serializable {
 
-    public static final ColorWrapper RED = wrap(new Color(255, 0, 0));
-    public static final ColorWrapper GREEN = wrap(new Color(0, 255, 0));
-    public static final ColorWrapper BLUE = wrap(new Color(0, 0, 255));
-    public static final ColorWrapper WHITE = wrap(new Color(255, 255, 255));
-    public static final ColorWrapper LIGHT_GRAY = wrap(new Color(192, 192, 192));
-    public static final ColorWrapper GRAY = wrap(new Color(128, 128, 128));
-    public static final ColorWrapper DARK_GRAY = wrap(new Color(64, 64, 64));
-    public static final ColorWrapper BLACK = wrap(new Color(0, 0, 0));
-    public static final ColorWrapper CYAN = wrap(new Color(0, 255, 255));
-    public static final ColorWrapper MAGENTA = wrap(new Color(255, 0, 255));
-    public static final ColorWrapper YELLOW = wrap(new Color(255, 255, 0));
-    public static final ColorWrapper PINK = wrap(new Color(255, 175, 175));
-    public static final ColorWrapper ORANGE = wrap(new Color(255, 200, 0));
+    public static final ColorWrapper RED = wrap(Color.RED);
+    public static final ColorWrapper GREEN = wrap(Color.GREEN);
+    public static final ColorWrapper BLUE = wrap(Color.BLUE);
+    public static final ColorWrapper WHITE = wrap(Color.WHITE);
+    public static final ColorWrapper LIGHT_GRAY = wrap(Color.LIGHT_GRAY);
+    public static final ColorWrapper GRAY = wrap(Color.GRAY);
+    public static final ColorWrapper DARK_GRAY = wrap(Color.DARK_GRAY);
+    public static final ColorWrapper BLACK = wrap(Color.BLACK);
+    public static final ColorWrapper CYAN = wrap(Color.CYAN);
+    public static final ColorWrapper MAGENTA = wrap(Color.MAGENTA);
+    public static final ColorWrapper YELLOW = wrap(Color.YELLOW);
+    public static final ColorWrapper PINK = wrap(Color.PINK);
+    public static final ColorWrapper ORANGE = wrap(Color.ORANGE);
 
     private transient Color wrapped;
 
@@ -34,18 +34,6 @@ public class ColorWrapper implements Serializable {
 
     private static ColorWrapper wrap(Color color) {
         return new ColorWrapper(color.getRed(), color.getGreen(), color.getBlue());
-    }
-
-    public int getRed() {
-        return this.wrapped.getRed();
-    }
-
-    public int getGreen() {
-        return this.wrapped.getGreen();
-    }
-
-    public int getBlue() {
-        return this.wrapped.getBlue();
     }
 
     public Color unwrap() {

@@ -54,13 +54,13 @@ public class Cell implements Serializable {
     }
 
     public synchronized void paint() {
+        cellShape.setColor(color.unwrap());
         cellShape.fill();
         painted = true;
     }
 
     public void setColor(ColorWrapper color) {
         this.color = color;
-        cellShape.setColor(color.unwrap());
     }
 
     public ColorWrapper getColor() {

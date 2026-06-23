@@ -6,6 +6,8 @@ A grid-based painting toy and algorithm visualizer. This was one of my first pro
 
 You navigate a cursor around a 60×45 grid, paint cells in different colours, and then run algorithms directly on your drawing. It's part sketchpad, part sandbox for watching code do its thing.
 
+![screenshot](screenshots/screenshot.png)
+
 ## Features
 
 - **Paint with keys** — move with `H`/`J`/`K`/`L` (VI-style), hold `SPACE` to draw, pick from 9 colours (`1`–`9`)
